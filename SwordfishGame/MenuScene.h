@@ -1,0 +1,13 @@
+//
+//  GameScene.h
+//  SwordfishGame
+//
+
+//  Copyright (c) 2014 admin. All rights reserved.
+//
+
+#import <SpriteKit/SpriteKit.h>
+
+@interface MenuScene : SKScene
+
+@end
