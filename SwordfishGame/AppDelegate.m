@@ -19,6 +19,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
 
+  // ***************************************************************************
   // conection with parse.com
   [Parse setApplicationId:@"C10IgS8d0PEcuSLxywiLnkHoas7oNJdfB6BKtUiv"
                 clientKey:@"tz6xVwIiM3qjItVqNl0bXsH7eaUA1KE9tYnSgVvo"];
@@ -32,6 +33,7 @@
   audioPlayer1.delegate = self;
   audioPlayer1.numberOfLoops = -1;
   [audioPlayer1 play];
+  // ***************************************************************************
 
   return YES;
 }
