@@ -9,6 +9,7 @@
 #import "GameViewController.h"
 #import "MenuScene.h"
 #import <Parse/Parse.h>
+#import "BestScore.h"
 
 @implementation SKScene (Unarchive)
 
@@ -52,10 +53,15 @@
   [skView presentScene:scene];
 
   // Add object to Parse.com **********************************************
-  PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
-  gameScore[@"user"] = @"Yoanna";
-  gameScore[@"result"] = @99;
-  [gameScore saveInBackground];
+  BestScore *bestScore = [BestScore object];
+  [bestScore setPlayerName:@"Yoanna"];
+  [bestScore setPlayerResult:@100];
+  [bestScore saveInBackground];
+
+  //  PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+  //  gameScore[@"user"] = @"Yoanna";
+  //  gameScore[@"result"] = @99;
+  //  [gameScore saveInBackground];
   // **********************************************************************
 }
 
