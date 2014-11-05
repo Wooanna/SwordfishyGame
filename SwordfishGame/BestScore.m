@@ -24,14 +24,14 @@
   [self registerSubclass];
 }
 
-- (void)setPlayerName:(NSString *)playerName {
-  self[@"playerName"] = playerName;
-  _playerName = playerName;
-}
-
-- (void)setPlayerResult:(NSNumber *)playerResult {
-  self[@"playerResult"] = playerResult;
-  _playerResult = playerResult;
-}
+//- (void)setPlayerName:(NSString *)playerName {
+//  self[@"playerName"] = playerName;
+//  _playerName = playerName;
+//}
+//
+//- (void)setPlayerResult:(NSNumber *)playerResult {
+//  self[@"playerResult"] = playerResult;
+//  _playerResult = playerResult;
+//}
 
 @end

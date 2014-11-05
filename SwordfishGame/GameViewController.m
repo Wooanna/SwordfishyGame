@@ -11,6 +11,14 @@
 #import <Parse/Parse.h>
 #import "BestScore.h"
 
+// for downloading players bestScores************************************
+@interface GameViewController ()
+
+@property(nonatomic, strong) NSMutableArray *bestScores;
+
+@end
+// **********************************************************************
+
 @implementation SKScene (Unarchive)
 
 + (instancetype)unarchiveFromFile:(NSString *)file {
@@ -34,6 +42,32 @@
 
 @implementation GameViewController
 
+// for downloading players bestScores**************************************
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    self.bestScores = [NSMutableArray array];
+  }
+  return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  if (self = [super initWithCoder:aDecoder]) {
+    self.bestScores = [NSMutableArray array];
+  }
+  return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil {
+
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self.bestScores = [NSMutableArray array];
+  }
+  return self;
+}
+// ************************************************************************
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -54,14 +88,36 @@
 
   // Add object to Parse.com **********************************************
   BestScore *bestScore = [BestScore object];
-  [bestScore setPlayerName:@"Yoanna"];
-  [bestScore setPlayerResult:@100];
-  [bestScore saveInBackground];
+  [bestScore setPlayerName:@"2"];
+  [bestScore setPlayerResult:@2];
+
+  [bestScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+      if (succeeded) {
+        NSLog(@"Result saved");
+      } else {
+        NSLog(@"%@", error);
+      }
+  }];
 
   //  PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
   //  gameScore[@"user"] = @"Yoanna";
   //  gameScore[@"result"] = @99;
   //  [gameScore saveInBackground];
+  // **********************************************************************
+
+  // for downloading players bestScores************************************
+  PFQuery *query = [PFQuery queryWithClassName:[bestScore parseClassName]];
+  [query orderByDescending:@"playerScore"];
+  query.limit = 10;
+  //  __weak id weakSelf = self;
+  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+        NSLog(@"%@", objects);
+        //          [weakSelf setPeople:[NSMutableArray
+        //          arrayWithArray:objects]];
+        //          [[weakSelf tableViewPeople] reloadData];
+      }
+  }];
   // **********************************************************************
 }
 

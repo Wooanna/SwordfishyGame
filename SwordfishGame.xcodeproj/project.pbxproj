@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447E0081A0A78CA00B10225 /* CoreDataHelper.m */; };
+		8447E00B1A0A793600B10225 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8447E00A1A0A793600B10225 /* CoreData.framework */; };
 		8464E2761A0647E700597E80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464E2751A0647E700597E80 /* AVFoundation.framework */; };
 		8464E2951A064BAD00597E80 /* Underwater.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8464E2941A064BAD00597E80 /* Underwater.mp3 */; };
 		84A145091A0818DB0063C63C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145061A0818DB0063C63C /* Bolts.framework */; };
@@ -46,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8447E0071A0A78CA00B10225 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		8447E0081A0A78CA00B10225 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		8447E00A1A0A793600B10225 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8464E2751A0647E700597E80 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8464E2941A064BAD00597E80 /* Underwater.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Underwater.mp3; path = SwordfishGame/Underwater.mp3; sourceTree = "<group>"; };
 		84A145061A0818DB0063C63C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -88,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8447E00B1A0A793600B10225 /* CoreData.framework in Frameworks */,
 				84A1451E1A081B750063C63C /* StoreKit.framework in Frameworks */,
 				84A1451F1A081B750063C63C /* SystemConfiguration.framework in Frameworks */,
 				84A1451B1A081B5F0063C63C /* Security.framework in Frameworks */,
@@ -118,6 +124,7 @@
 		84A145201A081C380063C63C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8447E00A1A0A793600B10225 /* CoreData.framework */,
 				84A1451C1A081B750063C63C /* StoreKit.framework */,
 				84A1451D1A081B750063C63C /* SystemConfiguration.framework */,
 				84A1451A1A081B5F0063C63C /* Security.framework */,
@@ -182,6 +189,8 @@
 				84B909E31A053823000DCA57 /* Supporting Files */,
 				84B90A0E1A0553F3000DCA57 /* GameScene.h */,
 				84B90A0F1A0553F3000DCA57 /* GameScene.m */,
+				8447E0071A0A78CA00B10225 /* CoreDataHelper.h */,
+				8447E0081A0A78CA00B10225 /* CoreDataHelper.m */,
 			);
 			path = SwordfishGame;
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 				84B909EC1A053823000DCA57 /* MenuScene.m in Sources */,
 				84A748821A0A05DA006D35FB /* BestScore.m in Sources */,
 				84B909E61A053823000DCA57 /* main.m in Sources */,
+				8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
