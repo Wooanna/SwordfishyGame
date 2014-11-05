@@ -88,8 +88,8 @@
 
   // Add object to Parse.com **********************************************
   BestScore *bestScore = [BestScore object];
-  [bestScore setPlayerName:@"2"];
-  [bestScore setPlayerResult:@2];
+  [bestScore setPlayerName:@"1"];
+  [bestScore setPlayerResult:@5];
 
   [bestScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
       if (succeeded) {

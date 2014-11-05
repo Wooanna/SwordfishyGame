@@ -121,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8465836D1A0AA2D10039A8DE /* DBHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				8447E0071A0A78CA00B10225 /* CoreDataHelper.h */,
+				8447E0081A0A78CA00B10225 /* CoreDataHelper.m */,
+			);
+			name = DBHelpers;
+			sourceTree = "<group>";
+		};
 		84A145201A081C380063C63C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				84A7487F1A0A04AE006D35FB /* Models */,
+				8465836D1A0AA2D10039A8DE /* DBHelpers */,
 				84B909E71A053823000DCA57 /* AppDelegate.h */,
 				84B909E81A053823000DCA57 /* AppDelegate.m */,
 				84B909EA1A053823000DCA57 /* MenuScene.h */,
@@ -189,8 +199,6 @@
 				84B909E31A053823000DCA57 /* Supporting Files */,
 				84B90A0E1A0553F3000DCA57 /* GameScene.h */,
 				84B90A0F1A0553F3000DCA57 /* GameScene.m */,
-				8447E0071A0A78CA00B10225 /* CoreDataHelper.h */,
-				8447E0081A0A78CA00B10225 /* CoreDataHelper.m */,
 			);
 			path = SwordfishGame;
 			sourceTree = "<group>";
