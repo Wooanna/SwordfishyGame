@@ -24,6 +24,8 @@
 		8447E00B1A0A793600B10225 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8447E00A1A0A793600B10225 /* CoreData.framework */; };
 		8464E2761A0647E700597E80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464E2751A0647E700597E80 /* AVFoundation.framework */; };
 		8464E2951A064BAD00597E80 /* Underwater.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8464E2941A064BAD00597E80 /* Underwater.mp3 */; };
+		849E7F261A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849E7F241A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodeld */; };
+		849E7F291A0BED0300EFD6D1 /* QuestionWithAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E7F281A0BED0300EFD6D1 /* QuestionWithAnswer.m */; };
 		84A145091A0818DB0063C63C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145061A0818DB0063C63C /* Bolts.framework */; };
 		84A1450A1A0818DB0063C63C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145071A0818DB0063C63C /* Parse.framework */; };
 		84A1450B1A0818DB0063C63C /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145081A0818DB0063C63C /* ParseFacebookUtils.framework */; };
@@ -82,6 +84,9 @@
 		8447E00A1A0A793600B10225 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8464E2751A0647E700597E80 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8464E2941A064BAD00597E80 /* Underwater.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Underwater.mp3; path = SwordfishGame/Underwater.mp3; sourceTree = "<group>"; };
+		849E7F251A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionsWithAnswers.xcdatamodel; sourceTree = "<group>"; };
+		849E7F271A0BED0300EFD6D1 /* QuestionWithAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionWithAnswer.h; path = ../QuestionWithAnswer.h; sourceTree = "<group>"; };
+		849E7F281A0BED0300EFD6D1 /* QuestionWithAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionWithAnswer.m; path = ../QuestionWithAnswer.m; sourceTree = "<group>"; };
 		84A145061A0818DB0063C63C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		84A145071A0818DB0063C63C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		84A145081A0818DB0063C63C /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -194,10 +199,14 @@
 		8465836D1A0AA2D10039A8DE /* DBHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				849E7F271A0BED0300EFD6D1 /* QuestionWithAnswer.h */,
+				849E7F281A0BED0300EFD6D1 /* QuestionWithAnswer.m */,
+				849E7F241A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodeld */,
 				8447E0071A0A78CA00B10225 /* CoreDataHelper.h */,
 				8447E0081A0A78CA00B10225 /* CoreDataHelper.m */,
 			);
 			name = DBHelpers;
+			path = SwordfishGame;
 			sourceTree = "<group>";
 		};
 		84A145201A081C380063C63C /* Frameworks */ = {
@@ -236,6 +245,7 @@
 		84B909D71A053822000DCA57 = {
 			isa = PBXGroup;
 			children = (
+				8465836D1A0AA2D10039A8DE /* DBHelpers */,
 				8425DF321A0B76C000953FD5 /* HelperClasses */,
 				8425DF2A1A0B75BD00953FD5 /* Resources */,
 				84A145201A081C380063C63C /* Frameworks */,
@@ -259,7 +269,6 @@
 			children = (
 				8425DF2B1A0B75C900953FD5 /* Scenes */,
 				84A7487F1A0A04AE006D35FB /* Models */,
-				8465836D1A0AA2D10039A8DE /* DBHelpers */,
 				84B909E71A053823000DCA57 /* AppDelegate.h */,
 				84B909E81A053823000DCA57 /* AppDelegate.m */,
 				84B909ED1A053823000DCA57 /* GameScene.sks */,
@@ -416,7 +425,9 @@
 				84B909E91A053823000DCA57 /* AppDelegate.m in Sources */,
 				8425DF2E1A0B767C00953FD5 /* Reachability.m in Sources */,
 				84B90A101A0553F3000DCA57 /* GameScene.m in Sources */,
+				849E7F261A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodeld in Sources */,
 				84B909EC1A053823000DCA57 /* MenuScene.m in Sources */,
+				849E7F291A0BED0300EFD6D1 /* QuestionWithAnswer.m in Sources */,
 				84A748821A0A05DA006D35FB /* BestScore.m in Sources */,
 				84B909E61A053823000DCA57 /* main.m in Sources */,
 				8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */,
@@ -635,6 +646,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		849E7F241A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				849E7F251A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodel */,
+			);
+			currentVersion = 849E7F251A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodel */;
+			name = QuestionsWithAnswers.xcdatamodeld;
+			path = ../QuestionsWithAnswers.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 84B909D81A053822000DCA57 /* Project object */;
 }

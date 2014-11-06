@@ -10,11 +10,17 @@
 #import "MenuScene.h"
 #import <Parse/Parse.h>
 #import "BestScore.h"
+#import "CoreDataHelper.h"
+#import "QuestionWithAnswer.h"
 
-// for downloading players bestScores************************************
+// *********************************************************************
 @interface GameViewController ()
 
+// for downloading players bestScores
 @property(nonatomic, strong) NSMutableArray *bestScores;
+
+// for coredata
+@property(nonatomic, strong) CoreDataHelper *cdHelper;
 
 @end
 // **********************************************************************
@@ -119,6 +125,62 @@
       }
   }];
   // **********************************************************************
+
+  // step 1: Insert some data
+  _cdHelper = [[CoreDataHelper alloc] init];
+  [_cdHelper setupCoreData];
+
+  QuestionWithAnswer *quest1 =
+      [NSEntityDescription insertNewObjectForEntityForName:@"QuestionWithAnswer"
+                                    inManagedObjectContext:_cdHelper.context];
+  quest1.question = @"Vapros 1";
+  quest1.answerOne = @"Otgovor 1 na Vapros1";
+  quest1.answerTwo = @"Otgovor 2 na Vapros1";
+  quest1.answerThree = @"Otgovor 3 na Vapros1";
+  quest1.rightAnswer = @3;
+
+  QuestionWithAnswer *quest2 =
+      [NSEntityDescription insertNewObjectForEntityForName:@"QuestionWithAnswer"
+                                    inManagedObjectContext:_cdHelper.context];
+  quest2.question = @"Vapros 4";
+  quest2.answerOne = @"Otgovor 1 na Vapros2";
+  quest2.answerTwo = @"Otgovor 2 na Vapros2";
+  quest2.answerThree = @"Otgovor 3 na Vapros42";
+  quest2.rightAnswer = @2;
+
+  [_cdHelper.context insertObject:quest1];
+  [_cdHelper.context insertObject:quest2];
+
+  [self.cdHelper saveContext];
+
+  // FETHICNG:
+
+  NSFetchRequest *request =
+      [NSFetchRequest fetchRequestWithEntityName:@"QuestionWithAnswer"];
+  //  NSSortDescriptor *sort =
+  //      [NSSortDescriptor sortDescriptorWithKey:@"price" ascending:YES];
+  //  [request setSortDescriptors:[NSArray arrayWithObject:sort]];
+
+  NSArray *fetchedObjects =
+      [_cdHelper.context executeFetchRequest:request error:nil];
+
+  for (QuestionWithAnswer *q in fetchedObjects) {
+    NSLog(@"Question = %@", q.question);
+    NSLog(@"Answer A = %@", q.answerOne);
+    NSLog(@"Answer B = %@", q.answerTwo);
+    NSLog(@"Answer C = %@", q.answerThree);
+    NSLog(@"Right answer = %@", q.rightAnswer);
+  }
+
+  // DELETE:
+  //
+  //    NSFetchRequest *request =
+  //    [NSFetchRequest fetchRequestWithEntityName:@"Item"];
+  //    NSArray *fetchedObjects =
+  //    [_coreDataHelper.context executeFetchRequest:request error:nil];
+  //    for (Item *item in fetchedObjects) { NSLog(@"Deleting Object '%@'",
+  //    item.name); [_coreDataHelper.context deleteObject:item];
+  //    }
 }
 
 - (BOOL)shouldAutorotate {
