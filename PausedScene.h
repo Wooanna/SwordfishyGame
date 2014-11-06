@@ -10,4 +10,8 @@
 
 @interface PausedScene : SKScene
 
+@property (strong, nonatomic, readonly) SKScene* returnScene;
+
+-(void)setReturnScene:(SKScene *)returnScene;
+
 @end

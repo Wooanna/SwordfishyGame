@@ -20,6 +20,7 @@
 		8425DF481A0B770000953FD5 /* silhouettes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3E1A0B770000953FD5 /* silhouettes.atlas */; };
 		8425DF491A0B770000953FD5 /* water_layer_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3F1A0B770000953FD5 /* water_layer_over.png */; };
 		8425DF4A1A0B770000953FD5 /* menu_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF401A0B770000953FD5 /* menu_back.png */; };
+		8425DF501A0BE19A00953FD5 /* BubbleMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF4F1A0BE19A00953FD5 /* BubbleMaker.m */; };
 		8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447E0081A0A78CA00B10225 /* CoreDataHelper.m */; };
 		8447E00B1A0A793600B10225 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8447E00A1A0A793600B10225 /* CoreData.framework */; };
 		8464E2761A0647E700597E80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464E2751A0647E700597E80 /* AVFoundation.framework */; };
@@ -48,6 +49,8 @@
 		84B909F91A053823000DCA57 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B909F71A053823000DCA57 /* LaunchScreen.xib */; };
 		84B90A051A053823000DCA57 /* SwordfishGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B90A041A053823000DCA57 /* SwordfishGameTests.m */; };
 		84B90A101A0553F3000DCA57 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B90A0F1A0553F3000DCA57 /* GameScene.m */; };
+		84E6EBA51A0BF26000DB6D6A /* ScoresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EBA41A0BF26000DB6D6A /* ScoresView.m */; };
+		84E6EBA81A0BF28200DB6D6A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EBA71A0BF28200DB6D6A /* GameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,8 @@
 		8425DF3E1A0B770000953FD5 /* silhouettes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = silhouettes.atlas; sourceTree = "<group>"; };
 		8425DF3F1A0B770000953FD5 /* water_layer_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_layer_over.png; sourceTree = "<group>"; };
 		8425DF401A0B770000953FD5 /* menu_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_back.png; sourceTree = "<group>"; };
+		8425DF4E1A0BE19A00953FD5 /* BubbleMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleMaker.h; sourceTree = "<group>"; };
+		8425DF4F1A0BE19A00953FD5 /* BubbleMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleMaker.m; sourceTree = "<group>"; };
 		8447E0071A0A78CA00B10225 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		8447E0081A0A78CA00B10225 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		8447E00A1A0A793600B10225 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -115,6 +120,10 @@
 		84B90A041A053823000DCA57 /* SwordfishGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwordfishGameTests.m; sourceTree = "<group>"; };
 		84B90A0E1A0553F3000DCA57 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = SwordfishGame/GameScene.h; sourceTree = "<group>"; };
 		84B90A0F1A0553F3000DCA57 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = SwordfishGame/GameScene.m; sourceTree = "<group>"; };
+		84E6EBA31A0BF26000DB6D6A /* ScoresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresView.h; sourceTree = "<group>"; };
+		84E6EBA41A0BF26000DB6D6A /* ScoresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresView.m; sourceTree = "<group>"; };
+		84E6EBA61A0BF28200DB6D6A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		84E6EBA71A0BF28200DB6D6A /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +186,10 @@
 				84B909EB1A053823000DCA57 /* MenuScene.m */,
 				84B90A0E1A0553F3000DCA57 /* GameScene.h */,
 				84B90A0F1A0553F3000DCA57 /* GameScene.m */,
+				84E6EBA31A0BF26000DB6D6A /* ScoresView.h */,
+				84E6EBA41A0BF26000DB6D6A /* ScoresView.m */,
+				84E6EBA61A0BF28200DB6D6A /* GameOverScene.h */,
+				84E6EBA71A0BF28200DB6D6A /* GameOverScene.m */,
 			);
 			name = Scenes;
 			path = ..;
@@ -185,6 +198,8 @@
 		8425DF321A0B76C000953FD5 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				8425DF4E1A0BE19A00953FD5 /* BubbleMaker.h */,
+				8425DF4F1A0BE19A00953FD5 /* BubbleMaker.m */,
 				8425DF331A0B76CD00953FD5 /* NetworkConnectionChecker.h */,
 				8425DF341A0B76CD00953FD5 /* NetworkConnectionChecker.m */,
 			);
@@ -412,12 +427,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8425DF351A0B76CD00953FD5 /* NetworkConnectionChecker.m in Sources */,
+				84E6EBA51A0BF26000DB6D6A /* ScoresView.m in Sources */,
 				84B909F11A053823000DCA57 /* GameViewController.m in Sources */,
 				84B909E91A053823000DCA57 /* AppDelegate.m in Sources */,
+				84E6EBA81A0BF28200DB6D6A /* GameOverScene.m in Sources */,
 				8425DF2E1A0B767C00953FD5 /* Reachability.m in Sources */,
 				84B90A101A0553F3000DCA57 /* GameScene.m in Sources */,
 				84B909EC1A053823000DCA57 /* MenuScene.m in Sources */,
 				84A748821A0A05DA006D35FB /* BestScore.m in Sources */,
+				8425DF501A0BE19A00953FD5 /* BubbleMaker.m in Sources */,
 				84B909E61A053823000DCA57 /* main.m in Sources */,
 				8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */,
 				8425DF311A0B76A700953FD5 /* PausedScene.m in Sources */,

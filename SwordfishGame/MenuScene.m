@@ -1,5 +1,6 @@
 #import "MenuScene.h"
 #import "GameScene.h"
+#import "BubbleMaker.h"
 
 @implementation MenuScene {
     SKLabelNode *_swordWord;
@@ -17,6 +18,8 @@
     SKAction *_delay;
     SKAction *_delayAndMoveFishWord;
     NSArray *buttons;
+    BubbleMaker *_bubbleMaker;
+    
 }
 void showButtons(NSArray *buttons) {
     
@@ -40,6 +43,8 @@ void showButtons(NSArray *buttons) {
     _backgroundTexture = [SKTexture textureWithImageNamed:@"menu_back.png"];
     _backgroundLayer = [SKSpriteNode spriteNodeWithTexture:_backgroundTexture];
     _backgroundLayer.position = CGPointMake(self.size.width/2, self.size.height/2);
+    
+    _bubbleMaker = [[BubbleMaker alloc] initWithParentScene:self];
     
     _swordWord = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     _swordWord.text = @"Sword";
@@ -119,6 +124,10 @@ void showButtons(NSArray *buttons) {
     showButtons(buttons);
 }
 
+-(void)update:(NSTimeInterval)currentTime{
+    [_bubbleMaker generateBubbles];
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     UITouch* touch = [touches anyObject];
@@ -136,8 +145,6 @@ void showButtons(NSArray *buttons) {
     }
 }
 
-- (void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-}
+
 
 @end

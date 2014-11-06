@@ -7,6 +7,7 @@
   SKSpriteNode *_backLayer;
   SKTexture *_backTexture;
   SKSpriteNode *_sharky;
+    PausedScene *_pausedScene;
 }
 
 static const uint32_t fishyCategory = 0x1 << 0;
@@ -61,8 +62,12 @@ static const uint32_t frameCategory = 0x1 << 4;
     self.physicsWorld.gravity = CGVectorMake(0, -5);
     self.physicsWorld.contactDelegate = self;
     self.backgroundColor = [SKColor greenColor];
-    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:60];
+    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     self.physicsBody.categoryBitMask = frameCategory;
+      
+      _pausedScene = [PausedScene sceneWithSize:self.size];
+      
+      [self performSelector:@selector(setScene) withObject:nil afterDelay:0.01];
 
     _backTexture = [SKTexture textureWithImageNamed:@"game_back.png"];
     _backLayer = [SKSpriteNode spriteNodeWithTexture:_backTexture];
@@ -114,7 +119,7 @@ static const uint32_t frameCategory = 0x1 << 4;
 - (void)update:(NSTimeInterval)currentTime {
   // random generating of objects
   // that pop-out from the left side of the scene
-  if (arc4random() % 100 < 1) {
+  if (arc4random() % 100 < 10) {
     [self generateFish];
   }
   // remove objects that are out of the scene's range
@@ -144,14 +149,15 @@ static const uint32_t frameCategory = 0x1 << 4;
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
   SKTransition *transition = [SKTransition fadeWithDuration:0.5];
-  PausedScene *pausedScene = [PausedScene sceneWithSize:self.size];
+  
+  [self performSelector:@selector(pauseGame) withObject:nil afterDelay:1];
 
-  [self performSelector:@selector(pauseGame)
-             withObject:nil
-             afterDelay:1];
-  [self.view presentScene:pausedScene transition:transition];
+  [self.view presentScene:_pausedScene transition:transition];
 }
 
+-(void)setScene{
+     [_pausedScene setReturnScene:self];
+}
 - (void)pauseGame {
   self.scene.view.paused = YES;
 }
