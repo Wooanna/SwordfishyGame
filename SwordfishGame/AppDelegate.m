@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,13 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
+
+  // ***************************************************************************
+  // conection with parse.com
+  [Parse setApplicationId:@"C10IgS8d0PEcuSLxywiLnkHoas7oNJdfB6BKtUiv"
+                clientKey:@"tz6xVwIiM3qjItVqNl0bXsH7eaUA1KE9tYnSgVvo"];
+
+  // add background music
   NSString *music =
       [[NSBundle mainBundle] pathForResource:@"Underwater" ofType:@"mp3"];
   audioPlayer1 =
@@ -25,6 +33,7 @@
   audioPlayer1.delegate = self;
   audioPlayer1.numberOfLoops = -1;
   [audioPlayer1 play];
+  // ***************************************************************************
 
   return YES;
 }

@@ -7,8 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8425DF2E1A0B767C00953FD5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF2D1A0B767C00953FD5 /* Reachability.m */; };
+		8425DF311A0B76A700953FD5 /* PausedScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF301A0B76A700953FD5 /* PausedScene.m */; };
+		8425DF351A0B76CD00953FD5 /* NetworkConnectionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF341A0B76CD00953FD5 /* NetworkConnectionChecker.m */; };
+		8425DF411A0B770000953FD5 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF371A0B770000953FD5 /* bubble.png */; };
+		8425DF421A0B770000953FD5 /* fishes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF381A0B770000953FD5 /* fishes.atlas */; };
+		8425DF431A0B770000953FD5 /* game_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF391A0B770000953FD5 /* game_back@2x.png */; };
+		8425DF441A0B770000953FD5 /* manyFishes.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3A1A0B770000953FD5 /* manyFishes.png */; };
+		8425DF451A0B770000953FD5 /* sharky.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3B1A0B770000953FD5 /* sharky.atlas */; };
+		8425DF461A0B770000953FD5 /* sharky1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3C1A0B770000953FD5 /* sharky1@2x.png */; };
+		8425DF471A0B770000953FD5 /* sharky2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3D1A0B770000953FD5 /* sharky2@2x.png */; };
+		8425DF481A0B770000953FD5 /* silhouettes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3E1A0B770000953FD5 /* silhouettes.atlas */; };
+		8425DF491A0B770000953FD5 /* water_layer_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3F1A0B770000953FD5 /* water_layer_over.png */; };
+		8425DF4A1A0B770000953FD5 /* menu_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF401A0B770000953FD5 /* menu_back.png */; };
+		8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447E0081A0A78CA00B10225 /* CoreDataHelper.m */; };
+		8447E00B1A0A793600B10225 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8447E00A1A0A793600B10225 /* CoreData.framework */; };
 		8464E2761A0647E700597E80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464E2751A0647E700597E80 /* AVFoundation.framework */; };
 		8464E2951A064BAD00597E80 /* Underwater.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8464E2941A064BAD00597E80 /* Underwater.mp3 */; };
+		84A145091A0818DB0063C63C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145061A0818DB0063C63C /* Bolts.framework */; };
+		84A1450A1A0818DB0063C63C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145071A0818DB0063C63C /* Parse.framework */; };
+		84A1450B1A0818DB0063C63C /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145081A0818DB0063C63C /* ParseFacebookUtils.framework */; };
+		84A1450D1A081AB40063C63C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1450C1A081AB40063C63C /* AudioToolbox.framework */; };
+		84A1450F1A081AE70063C63C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1450E1A081AE70063C63C /* CFNetwork.framework */; };
+		84A145111A081AF60063C63C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145101A081AF60063C63C /* CoreGraphics.framework */; };
+		84A145131A081B0F0063C63C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145121A081B0F0063C63C /* CoreLocation.framework */; };
+		84A145151A081B270063C63C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145141A081B270063C63C /* libz.dylib */; };
+		84A145171A081B390063C63C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145161A081B390063C63C /* MobileCoreServices.framework */; };
+		84A145191A081B500063C63C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A145181A081B500063C63C /* QuartzCore.framework */; };
+		84A1451B1A081B5F0063C63C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1451A1A081B5F0063C63C /* Security.framework */; };
+		84A1451E1A081B750063C63C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1451C1A081B750063C63C /* StoreKit.framework */; };
+		84A1451F1A081B750063C63C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1451D1A081B750063C63C /* SystemConfiguration.framework */; };
+		84A748821A0A05DA006D35FB /* BestScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A748811A0A05DA006D35FB /* BestScore.m */; };
 		84B909E61A053823000DCA57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B909E51A053823000DCA57 /* main.m */; };
 		84B909E91A053823000DCA57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B909E81A053823000DCA57 /* AppDelegate.m */; };
 		84B909EC1A053823000DCA57 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B909EB1A053823000DCA57 /* MenuScene.m */; };
@@ -32,15 +61,49 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8425DF2C1A0B767C00953FD5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		8425DF2D1A0B767C00953FD5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		8425DF2F1A0B76A700953FD5 /* PausedScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PausedScene.h; sourceTree = "<group>"; };
+		8425DF301A0B76A700953FD5 /* PausedScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PausedScene.m; sourceTree = "<group>"; };
+		8425DF331A0B76CD00953FD5 /* NetworkConnectionChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkConnectionChecker.h; sourceTree = "<group>"; };
+		8425DF341A0B76CD00953FD5 /* NetworkConnectionChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkConnectionChecker.m; sourceTree = "<group>"; };
+		8425DF371A0B770000953FD5 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		8425DF381A0B770000953FD5 /* fishes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = fishes.atlas; sourceTree = "<group>"; };
+		8425DF391A0B770000953FD5 /* game_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_back@2x.png"; sourceTree = "<group>"; };
+		8425DF3A1A0B770000953FD5 /* manyFishes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manyFishes.png; sourceTree = "<group>"; };
+		8425DF3B1A0B770000953FD5 /* sharky.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sharky.atlas; sourceTree = "<group>"; };
+		8425DF3C1A0B770000953FD5 /* sharky1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharky1@2x.png"; sourceTree = "<group>"; };
+		8425DF3D1A0B770000953FD5 /* sharky2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharky2@2x.png"; sourceTree = "<group>"; };
+		8425DF3E1A0B770000953FD5 /* silhouettes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = silhouettes.atlas; sourceTree = "<group>"; };
+		8425DF3F1A0B770000953FD5 /* water_layer_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_layer_over.png; sourceTree = "<group>"; };
+		8425DF401A0B770000953FD5 /* menu_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_back.png; sourceTree = "<group>"; };
+		8447E0071A0A78CA00B10225 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		8447E0081A0A78CA00B10225 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		8447E00A1A0A793600B10225 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8464E2751A0647E700597E80 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8464E2941A064BAD00597E80 /* Underwater.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Underwater.mp3; path = SwordfishGame/Underwater.mp3; sourceTree = "<group>"; };
+		84A145061A0818DB0063C63C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		84A145071A0818DB0063C63C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		84A145081A0818DB0063C63C /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		84A1450C1A081AB40063C63C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		84A1450E1A081AE70063C63C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		84A145101A081AF60063C63C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		84A145121A081B0F0063C63C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		84A145141A081B270063C63C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		84A145161A081B390063C63C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		84A145181A081B500063C63C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		84A1451A1A081B5F0063C63C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		84A1451C1A081B750063C63C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		84A1451D1A081B750063C63C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		84A748801A0A05DA006D35FB /* BestScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestScore.h; sourceTree = "<group>"; };
+		84A748811A0A05DA006D35FB /* BestScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BestScore.m; sourceTree = "<group>"; };
 		84B909E01A053823000DCA57 /* SwordfishGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordfishGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B909E41A053823000DCA57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B909E51A053823000DCA57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84B909E71A053823000DCA57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84B909E81A053823000DCA57 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		84B909EA1A053823000DCA57 /* MenuScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
-		84B909EB1A053823000DCA57 /* MenuScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		84B909EA1A053823000DCA57 /* MenuScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MenuScene.h; path = SwordfishGame/MenuScene.h; sourceTree = "<group>"; };
+		84B909EB1A053823000DCA57 /* MenuScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MenuScene.m; path = SwordfishGame/MenuScene.m; sourceTree = "<group>"; };
 		84B909ED1A053823000DCA57 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		84B909EF1A053823000DCA57 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		84B909F01A053823000DCA57 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
@@ -50,8 +113,8 @@
 		84B909FE1A053823000DCA57 /* SwordfishGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwordfishGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B90A031A053823000DCA57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B90A041A053823000DCA57 /* SwordfishGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwordfishGameTests.m; sourceTree = "<group>"; };
-		84B90A0E1A0553F3000DCA57 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		84B90A0F1A0553F3000DCA57 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		84B90A0E1A0553F3000DCA57 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = SwordfishGame/GameScene.h; sourceTree = "<group>"; };
+		84B90A0F1A0553F3000DCA57 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = SwordfishGame/GameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +122,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8447E00B1A0A793600B10225 /* CoreData.framework in Frameworks */,
+				84A1451E1A081B750063C63C /* StoreKit.framework in Frameworks */,
+				84A1451F1A081B750063C63C /* SystemConfiguration.framework in Frameworks */,
+				84A1451B1A081B5F0063C63C /* Security.framework in Frameworks */,
+				84A145191A081B500063C63C /* QuartzCore.framework in Frameworks */,
+				84A145171A081B390063C63C /* MobileCoreServices.framework in Frameworks */,
+				84A145151A081B270063C63C /* libz.dylib in Frameworks */,
+				84A145131A081B0F0063C63C /* CoreLocation.framework in Frameworks */,
+				84A145111A081AF60063C63C /* CoreGraphics.framework in Frameworks */,
+				84A1450F1A081AE70063C63C /* CFNetwork.framework in Frameworks */,
+				84A1450D1A081AB40063C63C /* AudioToolbox.framework in Frameworks */,
 				8464E2761A0647E700597E80 /* AVFoundation.framework in Frameworks */,
+				84A145091A0818DB0063C63C /* Bolts.framework in Frameworks */,
+				84A1450A1A0818DB0063C63C /* Parse.framework in Frameworks */,
+				84A1450B1A0818DB0063C63C /* ParseFacebookUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,11 +150,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8425DF2A1A0B75BD00953FD5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8425DF371A0B770000953FD5 /* bubble.png */,
+				8425DF381A0B770000953FD5 /* fishes.atlas */,
+				8425DF391A0B770000953FD5 /* game_back@2x.png */,
+				8425DF3A1A0B770000953FD5 /* manyFishes.png */,
+				8425DF3B1A0B770000953FD5 /* sharky.atlas */,
+				8425DF3C1A0B770000953FD5 /* sharky1@2x.png */,
+				8425DF3D1A0B770000953FD5 /* sharky2@2x.png */,
+				8425DF3E1A0B770000953FD5 /* silhouettes.atlas */,
+				8425DF3F1A0B770000953FD5 /* water_layer_over.png */,
+				8425DF401A0B770000953FD5 /* menu_back.png */,
+				8464E2941A064BAD00597E80 /* Underwater.mp3 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8425DF2B1A0B75C900953FD5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8425DF2F1A0B76A700953FD5 /* PausedScene.h */,
+				8425DF301A0B76A700953FD5 /* PausedScene.m */,
+				84B909EA1A053823000DCA57 /* MenuScene.h */,
+				84B909EB1A053823000DCA57 /* MenuScene.m */,
+				84B90A0E1A0553F3000DCA57 /* GameScene.h */,
+				84B90A0F1A0553F3000DCA57 /* GameScene.m */,
+			);
+			name = Scenes;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8425DF321A0B76C000953FD5 /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				8425DF331A0B76CD00953FD5 /* NetworkConnectionChecker.h */,
+				8425DF341A0B76CD00953FD5 /* NetworkConnectionChecker.m */,
+			);
+			name = HelperClasses;
+			sourceTree = "<group>";
+		};
+		8465836D1A0AA2D10039A8DE /* DBHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				8447E0071A0A78CA00B10225 /* CoreDataHelper.h */,
+				8447E0081A0A78CA00B10225 /* CoreDataHelper.m */,
+			);
+			name = DBHelpers;
+			sourceTree = "<group>";
+		};
+		84A145201A081C380063C63C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8425DF2C1A0B767C00953FD5 /* Reachability.h */,
+				8425DF2D1A0B767C00953FD5 /* Reachability.m */,
+				8447E00A1A0A793600B10225 /* CoreData.framework */,
+				84A1451C1A081B750063C63C /* StoreKit.framework */,
+				84A1451D1A081B750063C63C /* SystemConfiguration.framework */,
+				84A1451A1A081B5F0063C63C /* Security.framework */,
+				84A145181A081B500063C63C /* QuartzCore.framework */,
+				84A145161A081B390063C63C /* MobileCoreServices.framework */,
+				84A145141A081B270063C63C /* libz.dylib */,
+				84A145121A081B0F0063C63C /* CoreLocation.framework */,
+				84A145101A081AF60063C63C /* CoreGraphics.framework */,
+				84A1450E1A081AE70063C63C /* CFNetwork.framework */,
+				84A1450C1A081AB40063C63C /* AudioToolbox.framework */,
+				84A145061A0818DB0063C63C /* Bolts.framework */,
+				84A145071A0818DB0063C63C /* Parse.framework */,
+				84A145081A0818DB0063C63C /* ParseFacebookUtils.framework */,
+				8464E2751A0647E700597E80 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84A7487F1A0A04AE006D35FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84A748801A0A05DA006D35FB /* BestScore.h */,
+				84A748811A0A05DA006D35FB /* BestScore.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		84B909D71A053822000DCA57 = {
 			isa = PBXGroup;
 			children = (
-				8464E2941A064BAD00597E80 /* Underwater.mp3 */,
-				8464E2751A0647E700597E80 /* AVFoundation.framework */,
+				8425DF321A0B76C000953FD5 /* HelperClasses */,
+				8425DF2A1A0B75BD00953FD5 /* Resources */,
+				84A145201A081C380063C63C /* Frameworks */,
 				84B909E21A053823000DCA57 /* SwordfishGame */,
 				84B90A011A053823000DCA57 /* SwordfishGameTests */,
 				84B909E11A053823000DCA57 /* Products */,
@@ -96,10 +257,11 @@
 		84B909E21A053823000DCA57 /* SwordfishGame */ = {
 			isa = PBXGroup;
 			children = (
+				8425DF2B1A0B75C900953FD5 /* Scenes */,
+				84A7487F1A0A04AE006D35FB /* Models */,
+				8465836D1A0AA2D10039A8DE /* DBHelpers */,
 				84B909E71A053823000DCA57 /* AppDelegate.h */,
 				84B909E81A053823000DCA57 /* AppDelegate.m */,
-				84B909EA1A053823000DCA57 /* MenuScene.h */,
-				84B909EB1A053823000DCA57 /* MenuScene.m */,
 				84B909ED1A053823000DCA57 /* GameScene.sks */,
 				84B909EF1A053823000DCA57 /* GameViewController.h */,
 				84B909F01A053823000DCA57 /* GameViewController.m */,
@@ -107,8 +269,6 @@
 				84B909F51A053823000DCA57 /* Images.xcassets */,
 				84B909F71A053823000DCA57 /* LaunchScreen.xib */,
 				84B909E31A053823000DCA57 /* Supporting Files */,
-				84B90A0E1A0553F3000DCA57 /* GameScene.h */,
-				84B90A0F1A0553F3000DCA57 /* GameScene.m */,
 			);
 			path = SwordfishGame;
 			sourceTree = "<group>";
@@ -222,8 +382,18 @@
 				84B909F91A053823000DCA57 /* LaunchScreen.xib in Resources */,
 				84B909F61A053823000DCA57 /* Images.xcassets in Resources */,
 				84B909EE1A053823000DCA57 /* GameScene.sks in Resources */,
+				8425DF451A0B770000953FD5 /* sharky.atlas in Resources */,
+				8425DF481A0B770000953FD5 /* silhouettes.atlas in Resources */,
 				8464E2951A064BAD00597E80 /* Underwater.mp3 in Resources */,
+				8425DF441A0B770000953FD5 /* manyFishes.png in Resources */,
+				8425DF491A0B770000953FD5 /* water_layer_over.png in Resources */,
 				84B909F41A053823000DCA57 /* Main.storyboard in Resources */,
+				8425DF421A0B770000953FD5 /* fishes.atlas in Resources */,
+				8425DF411A0B770000953FD5 /* bubble.png in Resources */,
+				8425DF431A0B770000953FD5 /* game_back@2x.png in Resources */,
+				8425DF461A0B770000953FD5 /* sharky1@2x.png in Resources */,
+				8425DF471A0B770000953FD5 /* sharky2@2x.png in Resources */,
+				8425DF4A1A0B770000953FD5 /* menu_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,11 +411,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8425DF351A0B76CD00953FD5 /* NetworkConnectionChecker.m in Sources */,
 				84B909F11A053823000DCA57 /* GameViewController.m in Sources */,
 				84B909E91A053823000DCA57 /* AppDelegate.m in Sources */,
+				8425DF2E1A0B767C00953FD5 /* Reachability.m in Sources */,
 				84B90A101A0553F3000DCA57 /* GameScene.m in Sources */,
 				84B909EC1A053823000DCA57 /* MenuScene.m in Sources */,
+				84A748821A0A05DA006D35FB /* BestScore.m in Sources */,
 				84B909E61A053823000DCA57 /* main.m in Sources */,
+				8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */,
+				8425DF311A0B76A700953FD5 /* PausedScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +544,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SwordfishGame",
+				);
 				INFOPLIST_FILE = SwordfishGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -379,6 +559,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SwordfishGame",
+				);
 				INFOPLIST_FILE = SwordfishGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
