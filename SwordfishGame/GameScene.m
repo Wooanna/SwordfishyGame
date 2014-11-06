@@ -144,9 +144,18 @@ static const uint32_t frameCategory = 0x1 << 4;
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
-  SKTransition *transition = [SKTransition fadeWithDuration:.5];
-  PausedScene *pausedScene = [PausedScene sceneWithSize:self.size];
-  [self.view presentScene:pausedScene transition:transition];
+    SKTransition *transition = [SKTransition fadeWithDuration:0.1];
+    PausedScene *pausedScene = [PausedScene sceneWithSize:self.frame.size];
+    [self performSelector:@selector(pauseGame) withObject:nil afterDelay:1/60.0];
+    
+               [self.view presentScene:pausedScene transition:transition];
+    
+
+    
+    
+}
+-(void)pauseGame{
+self.scene.view.paused = YES;
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
