@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		8425DF2E1A0B767C00953FD5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF2D1A0B767C00953FD5 /* Reachability.m */; };
 		8425DF311A0B76A700953FD5 /* PausedScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF301A0B76A700953FD5 /* PausedScene.m */; };
 		8425DF351A0B76CD00953FD5 /* NetworkConnectionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF341A0B76CD00953FD5 /* NetworkConnectionChecker.m */; };
@@ -21,8 +20,6 @@
 		8425DF481A0B770000953FD5 /* silhouettes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3E1A0B770000953FD5 /* silhouettes.atlas */; };
 		8425DF491A0B770000953FD5 /* water_layer_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF3F1A0B770000953FD5 /* water_layer_over.png */; };
 		8425DF4A1A0B770000953FD5 /* menu_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8425DF401A0B770000953FD5 /* menu_back.png */; };
-=======
->>>>>>> FETCH_HEAD
 		8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447E0081A0A78CA00B10225 /* CoreDataHelper.m */; };
 		8447E00B1A0A793600B10225 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8447E00A1A0A793600B10225 /* CoreData.framework */; };
 		8464E2761A0647E700597E80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464E2751A0647E700597E80 /* AVFoundation.framework */; };
@@ -64,7 +61,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
 		8425DF2C1A0B767C00953FD5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8425DF2D1A0B767C00953FD5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8425DF2F1A0B76A700953FD5 /* PausedScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PausedScene.h; sourceTree = "<group>"; };
@@ -81,8 +77,6 @@
 		8425DF3E1A0B770000953FD5 /* silhouettes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = silhouettes.atlas; sourceTree = "<group>"; };
 		8425DF3F1A0B770000953FD5 /* water_layer_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_layer_over.png; sourceTree = "<group>"; };
 		8425DF401A0B770000953FD5 /* menu_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_back.png; sourceTree = "<group>"; };
-=======
->>>>>>> FETCH_HEAD
 		8447E0071A0A78CA00B10225 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		8447E0081A0A78CA00B10225 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		8447E00A1A0A793600B10225 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -156,51 +150,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
 		8425DF2A1A0B75BD00953FD5 /* Resources */ = {
-=======
-		8465836D1A0AA2D10039A8DE /* DBHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				8447E0071A0A78CA00B10225 /* CoreDataHelper.h */,
-				8447E0081A0A78CA00B10225 /* CoreDataHelper.m */,
-			);
-			name = DBHelpers;
-			sourceTree = "<group>";
-		};
-		84A145201A081C380063C63C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8447E00A1A0A793600B10225 /* CoreData.framework */,
-				84A1451C1A081B750063C63C /* StoreKit.framework */,
-				84A1451D1A081B750063C63C /* SystemConfiguration.framework */,
-				84A1451A1A081B5F0063C63C /* Security.framework */,
-				84A145181A081B500063C63C /* QuartzCore.framework */,
-				84A145161A081B390063C63C /* MobileCoreServices.framework */,
-				84A145141A081B270063C63C /* libz.dylib */,
-				84A145121A081B0F0063C63C /* CoreLocation.framework */,
-				84A145101A081AF60063C63C /* CoreGraphics.framework */,
-				84A1450E1A081AE70063C63C /* CFNetwork.framework */,
-				84A1450C1A081AB40063C63C /* AudioToolbox.framework */,
-				84A145061A0818DB0063C63C /* Bolts.framework */,
-				84A145071A0818DB0063C63C /* Parse.framework */,
-				84A145081A0818DB0063C63C /* ParseFacebookUtils.framework */,
-				8464E2751A0647E700597E80 /* AVFoundation.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		84A7487F1A0A04AE006D35FB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				84A748801A0A05DA006D35FB /* BestScore.h */,
-				84A748811A0A05DA006D35FB /* BestScore.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		84B909D71A053822000DCA57 = {
->>>>>>> FETCH_HEAD
 			isa = PBXGroup;
 			children = (
 				8425DF371A0B770000953FD5 /* bubble.png */,
@@ -214,7 +164,6 @@
 				8425DF3F1A0B770000953FD5 /* water_layer_over.png */,
 				8425DF401A0B770000953FD5 /* menu_back.png */,
 				8464E2941A064BAD00597E80 /* Underwater.mp3 */,
-<<<<<<< HEAD
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -289,8 +238,6 @@
 			children = (
 				8425DF321A0B76C000953FD5 /* HelperClasses */,
 				8425DF2A1A0B75BD00953FD5 /* Resources */,
-=======
->>>>>>> FETCH_HEAD
 				84A145201A081C380063C63C /* Frameworks */,
 				84B909E21A053823000DCA57 /* SwordfishGame */,
 				84B90A011A053823000DCA57 /* SwordfishGameTests */,
@@ -310,10 +257,7 @@
 		84B909E21A053823000DCA57 /* SwordfishGame */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				8425DF2B1A0B75C900953FD5 /* Scenes */,
-=======
->>>>>>> FETCH_HEAD
 				84A7487F1A0A04AE006D35FB /* Models */,
 				8465836D1A0AA2D10039A8DE /* DBHelpers */,
 				84B909E71A053823000DCA57 /* AppDelegate.h */,
@@ -476,10 +420,7 @@
 				84A748821A0A05DA006D35FB /* BestScore.m in Sources */,
 				84B909E61A053823000DCA57 /* main.m in Sources */,
 				8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */,
-<<<<<<< HEAD
 				8425DF311A0B76A700953FD5 /* PausedScene.m in Sources */,
-=======
->>>>>>> FETCH_HEAD
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

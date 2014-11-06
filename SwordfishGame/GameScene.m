@@ -7,7 +7,6 @@
   SKSpriteNode *_backLayer;
   SKTexture *_backTexture;
   SKSpriteNode *_sharky;
-  
 }
 
 static const uint32_t fishyCategory = 0x1 << 0;
@@ -30,7 +29,7 @@ static const uint32_t frameCategory = 0x1 << 4;
   }
   return textures;
 }
-    // initialize and setup everything about out player our player
+// initialize and setup everything about out player our player
 - (void)InitializeSharky {
   SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"sharky"];
   NSMutableArray *sharkyTextures;
@@ -71,14 +70,14 @@ static const uint32_t frameCategory = 0x1 << 4;
         CGPointMake(self.size.width / 2, self.size.height / 2);
     _backLayer.zPosition = -10;
 
-      
-      scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-      scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
-      scoreLabel.position = CGPointMake(self.size.width/2,self.size.height - scoreLabel.frame.size.height);
-      scoreLabel.fontSize = 40;
-      scoreLabel.zPosition = 20;
-      [self addChild:scoreLabel];
-      [self addChild:_backLayer];
+    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
+    scoreLabel.position = CGPointMake(
+        self.size.width / 2, self.size.height - scoreLabel.frame.size.height);
+    scoreLabel.fontSize = 40;
+    scoreLabel.zPosition = 20;
+    [self addChild:scoreLabel];
+    [self addChild:_backLayer];
 
     [self InitializeSharky];
   }
@@ -113,21 +112,21 @@ static const uint32_t frameCategory = 0x1 << 4;
 }
 
 - (void)update:(NSTimeInterval)currentTime {
-    //random generating of objects
-    //that pop-out from the left side of the scene
+  // random generating of objects
+  // that pop-out from the left side of the scene
   if (arc4random() % 100 < 1) {
     [self generateFish];
   }
-    //remove objects that are out of the scene's range
+  // remove objects that are out of the scene's range
   for (SKSpriteNode *node in self.children) {
     if ((node.position.x > self.frame.size.width - 80 || node.position.y < 0) &&
         node != _sharky) {
       [node removeFromParent];
     }
   }
-    
-    //updatescore
-    scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
+
+  // updatescore
+  scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
 }
 
 - (void)handleSwipeLeft:(UISwipeGestureRecognizer *)recognizer {
@@ -144,18 +143,17 @@ static const uint32_t frameCategory = 0x1 << 4;
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
-    SKTransition *transition = [SKTransition fadeWithDuration:0.1];
-    PausedScene *pausedScene = [PausedScene sceneWithSize:self.frame.size];
-    [self performSelector:@selector(pauseGame) withObject:nil afterDelay:1/60.0];
-    
-               [self.view presentScene:pausedScene transition:transition];
-    
+  SKTransition *transition = [SKTransition fadeWithDuration:0.5];
+  PausedScene *pausedScene = [PausedScene sceneWithSize:self.size];
 
-    
-    
+  [self performSelector:@selector(pauseGame)
+             withObject:nil
+             afterDelay:1];
+  [self.view presentScene:pausedScene transition:transition];
 }
--(void)pauseGame{
-self.scene.view.paused = YES;
+
+- (void)pauseGame {
+  self.scene.view.paused = YES;
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
@@ -167,13 +165,13 @@ self.scene.view.paused = YES;
   }
 
   if (contact.bodyA.categoryBitMask == fishyCategory) {
-      score += 10;
+    score += 10;
     [secondBody.node removeFromParent];
   }
 }
 
-//method that generate and setup the current object
-//poping out from the left side of the scene
+// method that generate and setup the current object
+// poping out from the left side of the scene
 - (void)generateFish {
 
   int bodyRadius = arc4random_uniform(20) + 5;

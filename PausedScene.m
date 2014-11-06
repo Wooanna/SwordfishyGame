@@ -14,7 +14,7 @@
 }
 -(instancetype)initWithSize:(CGSize)size{
     if(self = [super initWithSize:size]){
-               _backLayer = [SKSpriteNode spriteNodeWithImageNamed:@"menu_back.png"];
+        _backLayer = [SKSpriteNode spriteNodeWithImageNamed:@"menu_back.png"];
         _backLayer.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         _backLayer.zPosition = 30;
         
