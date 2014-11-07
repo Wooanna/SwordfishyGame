@@ -43,9 +43,9 @@ static const uint32_t frameCategory = 0x1 << 4;
   _sharky = [SKSpriteNode spriteNodeWithImageNamed:@"sharky1.png"];
   _sharky.xScale = 0.5;
   _sharky.yScale = 0.5;
+    _sharky.anchorPoint = CGPointMake(0, 0.5);
   _sharky.physicsBody =
-      [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)
-                                      center:CGPointMake(0, -80)];
+      [SKPhysicsBody bodyWithCircleOfRadius:2];
   _sharky.physicsBody.mass = 0.1;
   _sharky.physicsBody.linearDamping = 3;
   _sharky.position = CGPointMake(self.size.width / 2, self.size.height / 2);
