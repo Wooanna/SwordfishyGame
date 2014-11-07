@@ -26,7 +26,7 @@
 
   // add background music
   NSString *music =
-      [[NSBundle mainBundle] pathForResource:@"Underwater" ofType:@"mp3"];
+      [[NSBundle mainBundle] pathForResource:@"Underwater" ofType:@"wav"];
   audioPlayer1 =
       [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:music]
                                              error:NULL]; // TODO: error
