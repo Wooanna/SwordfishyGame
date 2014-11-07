@@ -2,12 +2,16 @@
 //  ScoresView.h
 //  SwordfishGame
 //
-//  Created by admin on 11/6/14.
+//  Created by admin on 11/7/14.
 //  Copyright (c) 2014 admin. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <SpriteKit/SpriteKit.h>
 
-@interface ScoresView : UIView
+@interface ScoresView : SKScene <UITableViewDelegate, UITableViewDataSource>
 
+#pragma mark -
+#pragma mark UITableView setup
+
+- (void)didMoveToView:(SKView *)view; 
 @end

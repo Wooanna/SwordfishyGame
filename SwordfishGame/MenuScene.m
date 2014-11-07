@@ -1,6 +1,9 @@
 #import "MenuScene.h"
 #import "GameScene.h"
 #import "BubbleMaker.h"
+#import "ScoresView.h"
+#import "GameOverScene.h"
+#import "QuestionScene.h"
 
 @implementation MenuScene {
     SKLabelNode *_swordWord;
@@ -138,10 +141,19 @@ void showButtons(NSArray *buttons) {
         [self.view presentScene:gameScene transition:transition];
     }
     else if(CGRectContainsPoint(_scoresBtn.frame, location)){
+        SKTransition *transition = [SKTransition fadeWithDuration:0.5];
+        ScoresView* scoresView = [ScoresView sceneWithSize:self.size];
+       
+        [self.view presentScene:scoresView transition:transition];
     }
     else if(CGRectContainsPoint(_customizePlayerBtn.frame, location)){
+        GameOverScene *gameOverScene = [GameOverScene sceneWithSize:self.size];
+        [self.view presentScene:gameOverScene transition:transition];
     }
     else if(CGRectContainsPoint(_rulesBtn.frame, location)){
+        QuestionScene *qScene = [QuestionScene sceneWithSize:self.size];
+        [self.view presentScene:qScene ];
+        
     }
 }
 

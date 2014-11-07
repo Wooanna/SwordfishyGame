@@ -51,8 +51,9 @@
 		84B909F91A053823000DCA57 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B909F71A053823000DCA57 /* LaunchScreen.xib */; };
 		84B90A051A053823000DCA57 /* SwordfishGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B90A041A053823000DCA57 /* SwordfishGameTests.m */; };
 		84B90A101A0553F3000DCA57 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B90A0F1A0553F3000DCA57 /* GameScene.m */; };
-		84E6EBA51A0BF26000DB6D6A /* ScoresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EBA41A0BF26000DB6D6A /* ScoresView.m */; };
 		84E6EBA81A0BF28200DB6D6A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EBA71A0BF28200DB6D6A /* GameOverScene.m */; };
+		84E6EBAB1A0CCDDB00DB6D6A /* ScoresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EBAA1A0CCDDB00DB6D6A /* ScoresView.m */; };
+		84E6EBAE1A0CF81E00DB6D6A /* QuestionScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EBAD1A0CF81E00DB6D6A /* QuestionScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,10 +126,12 @@
 		84B90A041A053823000DCA57 /* SwordfishGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwordfishGameTests.m; sourceTree = "<group>"; };
 		84B90A0E1A0553F3000DCA57 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = SwordfishGame/GameScene.h; sourceTree = "<group>"; };
 		84B90A0F1A0553F3000DCA57 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = SwordfishGame/GameScene.m; sourceTree = "<group>"; };
-		84E6EBA31A0BF26000DB6D6A /* ScoresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresView.h; sourceTree = "<group>"; };
-		84E6EBA41A0BF26000DB6D6A /* ScoresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresView.m; sourceTree = "<group>"; };
 		84E6EBA61A0BF28200DB6D6A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		84E6EBA71A0BF28200DB6D6A /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		84E6EBA91A0CCDDB00DB6D6A /* ScoresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresView.h; sourceTree = "<group>"; };
+		84E6EBAA1A0CCDDB00DB6D6A /* ScoresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresView.m; sourceTree = "<group>"; };
+		84E6EBAC1A0CF81E00DB6D6A /* QuestionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionScene.h; sourceTree = "<group>"; };
+		84E6EBAD1A0CF81E00DB6D6A /* QuestionScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,10 +194,12 @@
 				84B909EB1A053823000DCA57 /* MenuScene.m */,
 				84B90A0E1A0553F3000DCA57 /* GameScene.h */,
 				84B90A0F1A0553F3000DCA57 /* GameScene.m */,
-				84E6EBA31A0BF26000DB6D6A /* ScoresView.h */,
-				84E6EBA41A0BF26000DB6D6A /* ScoresView.m */,
 				84E6EBA61A0BF28200DB6D6A /* GameOverScene.h */,
 				84E6EBA71A0BF28200DB6D6A /* GameOverScene.m */,
+				84E6EBA91A0CCDDB00DB6D6A /* ScoresView.h */,
+				84E6EBAA1A0CCDDB00DB6D6A /* ScoresView.m */,
+				84E6EBAC1A0CF81E00DB6D6A /* QuestionScene.h */,
+				84E6EBAD1A0CF81E00DB6D6A /* QuestionScene.m */,
 			);
 			name = Scenes;
 			path = ..;
@@ -435,8 +440,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E6EBAE1A0CF81E00DB6D6A /* QuestionScene.m in Sources */,
 				8425DF351A0B76CD00953FD5 /* NetworkConnectionChecker.m in Sources */,
-				84E6EBA51A0BF26000DB6D6A /* ScoresView.m in Sources */,
 				84B909F11A053823000DCA57 /* GameViewController.m in Sources */,
 				84B909E91A053823000DCA57 /* AppDelegate.m in Sources */,
 				84E6EBA81A0BF28200DB6D6A /* GameOverScene.m in Sources */,
@@ -449,6 +454,7 @@
 				8425DF501A0BE19A00953FD5 /* BubbleMaker.m in Sources */,
 				84B909E61A053823000DCA57 /* main.m in Sources */,
 				8447E0091A0A78CA00B10225 /* CoreDataHelper.m in Sources */,
+				84E6EBAB1A0CCDDB00DB6D6A /* ScoresView.m in Sources */,
 				8425DF311A0B76A700953FD5 /* PausedScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 #import "GameScene.h"
-
+#import "QuestionScene.h"
 #import "PausedScene.h"
 
 @implementation GameScene {
@@ -7,7 +7,7 @@
   SKSpriteNode *_backLayer;
   SKTexture *_backTexture;
   SKSpriteNode *_sharky;
-    PausedScene *_pausedScene;
+  PausedScene *_pausedScene;
 }
 
 static const uint32_t fishyCategory = 0x1 << 0;
@@ -43,14 +43,14 @@ static const uint32_t frameCategory = 0x1 << 4;
   _sharky = [SKSpriteNode spriteNodeWithImageNamed:@"sharky1.png"];
   _sharky.xScale = 0.5;
   _sharky.yScale = 0.5;
-    _sharky.anchorPoint = CGPointMake(0, 0.5);
-  _sharky.physicsBody =
-      [SKPhysicsBody bodyWithCircleOfRadius:2];
+  _sharky.anchorPoint = CGPointMake(0, 0.5);
+  _sharky.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:2];
   _sharky.physicsBody.mass = 0.1;
   _sharky.physicsBody.linearDamping = 3;
   _sharky.position = CGPointMake(self.size.width / 2, self.size.height / 2);
-  _sharky.physicsBody.categoryBitMask = fishyCategory;
-  _sharky.physicsBody.contactTestBitMask = fishCategory;
+  [_sharky.physicsBody setCategoryBitMask:fishyCategory];
+  [_sharky.physicsBody setContactTestBitMask:fishCategory | questionCategory];
+
   _sharky.physicsBody.friction = 0;
   [_sharky runAction:keepMovingForever];
   [self addChild:_sharky];
@@ -64,10 +64,10 @@ static const uint32_t frameCategory = 0x1 << 4;
     self.backgroundColor = [SKColor greenColor];
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     self.physicsBody.categoryBitMask = frameCategory;
-      
-      _pausedScene = [PausedScene sceneWithSize:self.size];
-      
-      [self performSelector:@selector(setScene) withObject:nil afterDelay:0.01];
+
+    _pausedScene = [PausedScene sceneWithSize:self.size];
+
+    [self performSelector:@selector(setScene) withObject:nil afterDelay:0.01];
 
     _backTexture = [SKTexture textureWithImageNamed:@"game_back.png"];
     _backLayer = [SKSpriteNode spriteNodeWithTexture:_backTexture];
@@ -149,14 +149,14 @@ static const uint32_t frameCategory = 0x1 << 4;
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
   SKTransition *transition = [SKTransition fadeWithDuration:0.5];
-  
+
   [self performSelector:@selector(pauseGame) withObject:nil afterDelay:1];
 
   [self.view presentScene:_pausedScene transition:transition];
 }
 
--(void)setScene{
-     [_pausedScene setReturnScene:self];
+- (void)setScene {
+  [_pausedScene setReturnScene:self];
 }
 - (void)pauseGame {
   self.scene.view.paused = YES;
@@ -172,6 +172,12 @@ static const uint32_t frameCategory = 0x1 << 4;
 
   if (contact.bodyA.categoryBitMask == fishyCategory) {
     score += 10;
+    NSLog(@"%d", contact.bodyB.categoryBitMask);
+    if (contact.bodyB.categoryBitMask == questionCategory) {
+      NSLog(@"question contact");
+      QuestionScene *qScene = [QuestionScene sceneWithSize:self.size];
+      [self.view presentScene:qScene];
+    }
     [secondBody.node removeFromParent];
   }
 }
@@ -195,7 +201,18 @@ static const uint32_t frameCategory = 0x1 << 4;
                                               fishesTextures.count - 1)]];
   fish.xScale = 0.2;
   fish.yScale = 0.2;
-  fish.physicsBody.categoryBitMask = fishCategory;
+
+  if (fish.texture == fishesTextures[2]) {
+    [fish.physicsBody setCategoryBitMask:0x1 << 3];
+    NSLog(@"%d", fish.physicsBody.categoryBitMask);
+    NSLog(@"%d", questionCategory);
+
+  } else {
+    [fish.physicsBody setCategoryBitMask:fishCategory];
+    NSLog(@"%d", fish.physicsBody.categoryBitMask);
+    NSLog(@"%d", fishCategory);
+  }
+
   fish.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:fish.size.width / 2];
 
   fish.physicsBody.affectedByGravity = NO;
