@@ -1,6 +1,9 @@
 #import "GameScene.h"
 #import "QuestionScene.h"
 #import "PausedScene.h"
+#import "AtlasImagesExtractor.h"
+#import "FishMaker.h"
+#import "GameOverScene.h"
 
 @implementation GameScene {
 
@@ -8,6 +11,9 @@
   SKTexture *_backTexture;
   SKSpriteNode *_sharky;
   PausedScene *_pausedScene;
+  QuestionScene *qScene;
+  AtlasImagesExtractor *extractor;
+  FishMaker *fishMaker;
 }
 
 static const uint32_t fishyCategory = 0x1 << 0;
@@ -16,26 +22,12 @@ static const uint32_t fishCategory = 0x1 << 2;
 static const uint32_t questionCategory = 0x1 << 3;
 static const uint32_t frameCategory = 0x1 << 4;
 
-- (NSMutableArray *)ExtractImagesFromAtlas:(SKTextureAtlas *)atlas {
-  NSArray *fishyImageNames = [atlas textureNames];
-
-  NSArray *sortedNames = [fishyImageNames
-      sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-
-  NSMutableArray *textures = [NSMutableArray array];
-
-  for (NSString *filename in sortedNames) {
-    SKTexture *texture = [atlas textureNamed:filename];
-    [textures addObject:texture];
-  }
-  return textures;
-}
 // initialize and setup everything about out player our player
 - (void)InitializeSharky {
-  SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"sharky"];
-  NSMutableArray *sharkyTextures;
-  sharkyTextures = [self ExtractImagesFromAtlas:atlas];
 
+  NSMutableArray *sharkyTextures = [NSMutableArray array];
+  sharkyTextures = [extractor ExtractImagesFromAtlasNamed:@"sharky"];
+  NSLog(@"%@", sharkyTextures);
   SKAction *move =
       [SKAction animateWithTextures:sharkyTextures timePerFrame:0.3];
   SKAction *keepMovingForever = [SKAction repeatActionForever:move];
@@ -49,6 +41,7 @@ static const uint32_t frameCategory = 0x1 << 4;
   _sharky.physicsBody.linearDamping = 3;
   _sharky.position = CGPointMake(self.size.width / 2, self.size.height / 2);
   [_sharky.physicsBody setCategoryBitMask:fishyCategory];
+  _sharky.name = @"sharky";
   [_sharky.physicsBody setContactTestBitMask:fishCategory | questionCategory];
 
   _sharky.physicsBody.friction = 0;
@@ -63,8 +56,9 @@ static const uint32_t frameCategory = 0x1 << 4;
     self.physicsWorld.contactDelegate = self;
     self.backgroundColor = [SKColor greenColor];
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-    self.physicsBody.categoryBitMask = frameCategory;
-
+    extractor = [[AtlasImagesExtractor alloc] init];
+    // self.physicsBody.categoryBitMask = frameCategory;
+    fishMaker = [[FishMaker alloc] initWithParentScene:self];
     _pausedScene = [PausedScene sceneWithSize:self.size];
 
     [self performSelector:@selector(setScene) withObject:nil afterDelay:0.01];
@@ -120,7 +114,7 @@ static const uint32_t frameCategory = 0x1 << 4;
   // random generating of objects
   // that pop-out from the left side of the scene
   if (arc4random() % 100 < 10) {
-    [self generateFish];
+    [fishMaker generateFish];
   }
   // remove objects that are out of the scene's range
   for (SKSpriteNode *node in self.children) {
@@ -170,61 +164,50 @@ static const uint32_t frameCategory = 0x1 << 4;
     secondBody = contact.bodyB;
   }
 
-  if (contact.bodyA.categoryBitMask == fishyCategory) {
+  if (contact.bodyB.categoryBitMask == fishCategory) {
     score += 10;
-    NSLog(@"%d", contact.bodyB.categoryBitMask);
-    if (contact.bodyB.categoryBitMask == questionCategory) {
-      NSLog(@"question contact");
-      QuestionScene *qScene = [QuestionScene sceneWithSize:self.size];
-      [self.view presentScene:qScene];
-    }
+    NSLog(@"%d", secondBody.categoryBitMask);
+
     [secondBody.node removeFromParent];
+  }
+  if (contact.bodyB.categoryBitMask == questionCategory) {
+    NSLog(@"%d", secondBody.categoryBitMask);
+
+      SKTexture * texture = [SKTexture textureWithImageNamed:@"papirus.png"];
+    CGSize sceneSize = CGSizeMake(self.size.width / 2, self.size.height / 2);
+    qScene =
+        [QuestionScene spriteNodeWithTexture:texture size:sceneSize];
+    qScene.zPosition = 50;
+    qScene.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+    [secondBody.node removeFromParent];
+    [qScene initQuestionNode];
+    [self addChild:qScene];
+    self.scene.view.paused = YES;
   }
 }
 
 // method that generate and setup the current object
 // poping out from the left side of the scene
-- (void)generateFish {
-
-  int bodyRadius = arc4random_uniform(20) + 5;
-  CGFloat fishPosition =
-      arc4random_uniform(self.frame.size.height - bodyRadius * 2);
-  SKAction *moveBubble = [SKAction moveByX:self.frame.size.width
-                                         y:0
-                                  duration:arc4random_uniform(5)];
-
-  SKTextureAtlas *fishesAtlas = [SKTextureAtlas atlasNamed:@"fishes"];
-  NSMutableArray *fishesTextures = [self ExtractImagesFromAtlas:fishesAtlas];
-
-  SKSpriteNode *fish =
-      [SKSpriteNode spriteNodeWithTexture:fishesTextures[arc4random_uniform(
-                                              fishesTextures.count - 1)]];
-  fish.xScale = 0.2;
-  fish.yScale = 0.2;
-
-  if (fish.texture == fishesTextures[2]) {
-    [fish.physicsBody setCategoryBitMask:0x1 << 3];
-    NSLog(@"%d", fish.physicsBody.categoryBitMask);
-    NSLog(@"%d", questionCategory);
-
-  } else {
-    [fish.physicsBody setCategoryBitMask:fishCategory];
-    NSLog(@"%d", fish.physicsBody.categoryBitMask);
-    NSLog(@"%d", fishCategory);
-  }
-
-  fish.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:fish.size.width / 2];
-
-  fish.physicsBody.affectedByGravity = NO;
-  fish.position = CGPointMake(0, fishPosition);
-  [fish runAction:moveBubble];
-  [self addChild:fish];
-}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [_sharky.physicsBody applyImpulse:CGVectorMake(0, 100)];
   UITouch *touch = [touches anyObject];
-  // CGPoint location = [touch locationInNode:self.scene];
+  CGPoint location = [touch locationInNode:qScene];
+
+  if (CGRectContainsPoint([qScene getAnswerOneFrame], location)) {
+      
+    [qScene removeFromParent];
+    self.scene.view.paused = NO;
+      
+  } else if (CGRectContainsPoint([qScene getAnswerTwoFrame], location)) {
+    [qScene removeFromParent];
+    self.scene.view.paused = NO;
+  } else if (CGRectContainsPoint([qScene getAnswerTreeFrame], location)) {
+      SKTransition* transition = [SKTransition fadeWithDuration:0.5];
+      GameOverScene *gameOverScene = [GameOverScene sceneWithSize:self.size];
+      [self.view presentScene:gameOverScene ];
+
+  }
 }
 
 @end

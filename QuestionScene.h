@@ -8,7 +8,16 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface QuestionScene : SKScene
+@interface QuestionScene : SKSpriteNode
+
+@property (strong, nonatomic,  readonly)SKLabelNode* question;
 
 
+@property (strong, nonatomic,  readonly)SKLabelNode* answerOne;
+@property (strong, nonatomic,  readonly)SKLabelNode* answerTwo;
+@property (strong, nonatomic,  readonly)SKLabelNode* answerTree;
+-(void)initQuestionNode;
+-(CGRect) getAnswerOneFrame;
+-(CGRect) getAnswerTwoFrame;
+-(CGRect) getAnswerTreeFrame;
 @end

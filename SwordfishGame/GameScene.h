@@ -15,6 +15,7 @@
     SKLabelNode *scoreLabel;
     
     int score;
+    
+    
 }
-
 @end
