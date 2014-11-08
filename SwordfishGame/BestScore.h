@@ -12,8 +12,5 @@
 
 @property(nonatomic, strong) NSString *playerName;
 @property NSNumber *playerResult;
-@property(nonatomic, strong) NSString *locationName;
-@property(nonatomic, strong) NSString *countryName;
-@property(nonatomic, strong) NSString *subLocality;
 
 @end

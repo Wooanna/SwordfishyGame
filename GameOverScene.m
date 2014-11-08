@@ -1,14 +1,11 @@
 #import "GameOverScene.H"
 #import "BestScore.h"
-#import "TALocationProvider.h"
-
 
 @implementation GameOverScene{
     UITextField* textField;
     SKLabelNode* labelDone;
     SKSpriteNode* gameOver;
     SKSpriteNode* waterLayer;
-    TALocationProvider *locationProvider;
 }
 
 -(instancetype)initWithSize:(CGSize)size{
@@ -43,10 +40,6 @@
     labelDone.text = @"DONE";
     labelDone.fontSize = 40;
     labelDone.zPosition = 500;
-        
-        // add location
-        locationProvider = [[TALocationProvider alloc] init];
-
     [self addChild:waterLayer];
     
     [self addChild:labelDone];
@@ -55,86 +48,34 @@
     }
     return self;
 }
-
-- (void)locationUpdated:(CLLocation *)geoLocation {
-    NSString *geoLocationMessage =
-    [NSString stringWithFormat:@"Your position is (%lf, %lf)",
-     geoLocation.coordinate.latitude,
-     geoLocation.coordinate.longitude];
+-(void)didMoveToView:(SKView *)view{
     
-    [[[UIAlertView alloc] initWithTitle:@"Location updated with target-action"
-                                message:geoLocationMessage
-                               delegate:nil
-                      cancelButtonTitle:@"Ok"
-                      otherButtonTitles:nil, nil] show];
     
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
-
-
-
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
-  UITouch *touch = [touches anyObject];
-  CGPoint location = [touch locationInNode:self.scene];
-
-  if (CGRectContainsPoint(labelDone.frame, location)) {
-    NSString *name = [textField text];
-    NSNumber *score = @200;
-
-    // Add object to Parse.com **********************************************
-    BestScore *bestScore = [BestScore object];
-    [bestScore setPlayerName:name];
-    [bestScore setPlayerResult:score];
-
-    [locationProvider getLocationWithTarget:self
-                                  andAction:@selector(locationUpdated:)];
-    [locationProvider getLocationWithBlock:^(CLLocation *geoLocation) {
-        NSString *geoLocationMessage =
-            [NSString stringWithFormat:@"Your position is (%lf, %lf)",
-                                       geoLocation.coordinate.latitude,
-                                       geoLocation.coordinate.longitude];
-
-        [[[UIAlertView alloc] initWithTitle:@"Location updated"
-                                    message:geoLocationMessage
-                                   delegate:nil
-                          cancelButtonTitle:@"Ok"
-                          otherButtonTitles:nil, nil] show];
-
-        CLGeocoder *coder = [[CLGeocoder alloc] init];
-        [coder reverseGeocodeLocation:geoLocation
-                    completionHandler:^(NSArray *placemarks, NSError *error) {
-                        CLPlacemark *mark = [placemarks lastObject];
-                        NSLog(@"%@ - %@ - %@", mark.name, mark.subLocality,
-                              mark.country);
-
-                        [bestScore setLocationName:mark.name];
-
-                        if (mark.subLocality) {
-                          [bestScore setSubLocality:mark.subLocality];
-                        } else {
-                          [bestScore setSubLocality:@""];
-                        }
-
-                        if (mark.country) {
-                          [bestScore setCountryName:mark.country];
-                        } else {
-                          [bestScore setCountryName:@""];
-                        }
-
-                        [bestScore saveInBackgroundWithBlock:^(BOOL succeeded,
-                                                               NSError *error) {
-                            if (succeeded) {
-                              NSLog(@"Result saved");
-                            } else {
-                              NSLog(@"%@", error);
-                            }
-                        }];
-
-                    }];
-    }];
-  }
+    UITouch* touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self.scene];
+    
+    if(CGRectContainsPoint(labelDone.frame, location)){
+        NSString* name = [textField text];
+        NSNumber* score = @200;
+        
+        // Add object to Parse.com **********************************************
+        BestScore *bestScore = [BestScore object];
+        [bestScore setPlayerName:name];
+        [bestScore setPlayerResult:score];
+        
+        [bestScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Result saved");
+            } else {
+                NSLog(@"%@", error);
+            }
+        }];
+    
+    }
+    
 }
 @end

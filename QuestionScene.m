@@ -30,13 +30,13 @@
   NSArray *fetchedObjects =
       [_cdHelper.context executeFetchRequest:request error:nil];
 
-//  for (QuestionWithAnswer *q in fetchedObjects) {
-//    NSLog(@"Question = %@", q.question);
-//    NSLog(@"Answer A = %@", q.answerOne);
-//    NSLog(@"Answer B = %@", q.answerTwo);
-//    NSLog(@"Answer C = %@", q.answerThree);
-//    NSLog(@"Right answer = %@", q.rightAnswer);
-//  }
+  for (QuestionWithAnswer *q in fetchedObjects) {
+    NSLog(@"Question = %@", q.question);
+    NSLog(@"Answer A = %@", q.answerOne);
+    NSLog(@"Answer B = %@", q.answerTwo);
+    NSLog(@"Answer C = %@", q.answerThree);
+    NSLog(@"Right answer = %@", q.rightAnswer);
+  }
 
   QuestionWithAnswer *currentQuestion =
       fetchedObjects[arc4random_uniform(fetchedObjects.count)];
