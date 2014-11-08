@@ -39,6 +39,7 @@
 		84A1451B1A081B5F0063C63C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1451A1A081B5F0063C63C /* Security.framework */; };
 		84A1451E1A081B750063C63C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1451C1A081B750063C63C /* StoreKit.framework */; };
 		84A1451F1A081B750063C63C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A1451D1A081B750063C63C /* SystemConfiguration.framework */; };
+		84A4CAF01A0E16E4008F7DA9 /* TALocationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A4CAEF1A0E16E4008F7DA9 /* TALocationProvider.m */; };
 		84A748821A0A05DA006D35FB /* BestScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A748811A0A05DA006D35FB /* BestScore.m */; };
 		84A82D401A0D372D007ED656 /* Underwater.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A82D3F1A0D372D007ED656 /* Underwater.wav */; };
 		84B909E61A053823000DCA57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B909E51A053823000DCA57 /* main.m */; };
@@ -105,6 +106,8 @@
 		84A1451A1A081B5F0063C63C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		84A1451C1A081B750063C63C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		84A1451D1A081B750063C63C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		84A4CAEE1A0E16E4008F7DA9 /* TALocationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TALocationProvider.h; sourceTree = "<group>"; };
+		84A4CAEF1A0E16E4008F7DA9 /* TALocationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TALocationProvider.m; sourceTree = "<group>"; };
 		84A748801A0A05DA006D35FB /* BestScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestScore.h; sourceTree = "<group>"; };
 		84A748811A0A05DA006D35FB /* BestScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BestScore.m; sourceTree = "<group>"; };
 		84A82D3F1A0D372D007ED656 /* Underwater.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Underwater.wav; path = SwordfishGame/Underwater.wav; sourceTree = "<group>"; };
@@ -253,6 +256,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		84A4CAED1A0E169E008F7DA9 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				84A4CAEE1A0E16E4008F7DA9 /* TALocationProvider.h */,
+				84A4CAEF1A0E16E4008F7DA9 /* TALocationProvider.m */,
+			);
+			name = LocationManager;
+			sourceTree = "<group>";
+		};
 		84A7487F1A0A04AE006D35FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +299,7 @@
 		84B909E21A053823000DCA57 /* SwordfishGame */ = {
 			isa = PBXGroup;
 			children = (
+				84A4CAED1A0E169E008F7DA9 /* LocationManager */,
 				8425DF2B1A0B75C900953FD5 /* Scenes */,
 				84A7487F1A0A04AE006D35FB /* Models */,
 				84B909E71A053823000DCA57 /* AppDelegate.h */,
@@ -450,6 +463,7 @@
 				849E7F261A0BEA7500EFD6D1 /* QuestionsWithAnswers.xcdatamodeld in Sources */,
 				84B909EC1A053823000DCA57 /* MenuScene.m in Sources */,
 				849E7F291A0BED0300EFD6D1 /* QuestionWithAnswer.m in Sources */,
+				84A4CAF01A0E16E4008F7DA9 /* TALocationProvider.m in Sources */,
 				84A748821A0A05DA006D35FB /* BestScore.m in Sources */,
 				8425DF501A0BE19A00953FD5 /* BubbleMaker.m in Sources */,
 				84B909E61A053823000DCA57 /* main.m in Sources */,
