@@ -8,10 +8,13 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface PausedScene : SKScene
+@interface PausedScene
+    : SKScene <UIGestureRecognizerDelegate, SKPhysicsContactDelegate> {
 
-@property (strong, nonatomic, readonly) SKScene* returnScene;
+  UILongPressGestureRecognizer *longPressGesture;
+}
+@property(strong, nonatomic, readonly) SKScene *returnScene;
 
--(void)setReturnScene:(SKScene *)returnScene;
+- (void)setReturnScene:(SKScene *)returnScene;
 
 @end

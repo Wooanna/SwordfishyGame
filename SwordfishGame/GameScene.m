@@ -14,6 +14,10 @@
   QuestionScene *qScene;
   AtlasImagesExtractor *extractor;
   FishMaker *fishMaker;
+    SKLabelNode *_pinchOutToPouse;
+    SKAction *_fadeOut;
+    SKAction * _fadeIn;
+    SKAction *_fadeInfadeOut;
 }
 
 static const uint32_t fishyCategory = 0x1 << 0;
@@ -68,7 +72,19 @@ static const uint32_t frameCategory = 0x1 << 4;
     _backLayer.position =
         CGPointMake(self.size.width / 2, self.size.height / 2);
     _backLayer.zPosition = -10;
-
+      
+      _fadeOut = [SKAction fadeAlphaTo:0.0 duration:2];
+      _fadeIn = [SKAction fadeAlphaTo:1 duration:2];
+      _fadeInfadeOut = [SKAction sequence:@[_fadeIn, _fadeOut]];
+      _pinchOutToPouse = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+      _pinchOutToPouse.text = @"Pinch out to pause the game";
+      _pinchOutToPouse.position = CGPointMake(
+                                             self.size.width / 2, self.size.height - scoreLabel.frame.size.height - _pinchOutToPouse.frame.size.height - 40);
+      _pinchOutToPouse.fontSize = 40;
+      _pinchOutToPouse.zPosition = 20;
+      _pinchOutToPouse.alpha = 0.1;
+      [_pinchOutToPouse runAction:_fadeInfadeOut];
+      
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
     scoreLabel.position = CGPointMake(
@@ -77,6 +93,7 @@ static const uint32_t frameCategory = 0x1 << 4;
     scoreLabel.zPosition = 20;
     [self addChild:scoreLabel];
     [self addChild:_backLayer];
+      [self addChild:_pinchOutToPouse];
 
     [self InitializeSharky];
   }
@@ -128,6 +145,7 @@ static const uint32_t frameCategory = 0x1 << 4;
   scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
 }
 
+//GESTURES
 - (void)handleSwipeLeft:(UISwipeGestureRecognizer *)recognizer {
 
   [_sharky.physicsBody applyImpulse:CGVectorMake(-70, 0)];
@@ -139,7 +157,7 @@ static const uint32_t frameCategory = 0x1 << 4;
 }
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)recognizer {
-}
+  }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
   SKTransition *transition = [SKTransition fadeWithDuration:0.5];
