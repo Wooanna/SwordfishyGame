@@ -10,8 +10,11 @@
 
 @interface ScoresView : SKScene <UITableViewDelegate, UITableViewDataSource>
 
+@property(strong, nonatomic, readonly) SKScene *returnScene;
+
+- (void)setReturnScene:(SKScene *)returnScene;
+
 #pragma mark -
 #pragma mark UITableView setup
-
-- (void)didMoveToView:(SKView *)view; 
+- (void)didMoveToView:(SKView *)view;
 @end

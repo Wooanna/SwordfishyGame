@@ -14,6 +14,7 @@
 @implementation ScoresView {
   UITableViewCell *_cell;
     SKLabelNode *_scores;
+    SKLabelNode *_menu;
 }
 
 // for downloading players bestScores
@@ -25,6 +26,7 @@
   }
   return self;
 }
+
 
 - (void)didMoveToView:(SKView *)view {
   [super didMoveToView:view];
@@ -62,8 +64,18 @@ _tableView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.si
     _scores.position = CGPointMake(self.size.width/2, self.size.height - 50);
     _scores.fontSize = 30;
     _scores.text = @"SCORES: ";
+    
+    _menu = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    _menu.position = CGPointMake(self.size.width/2, 50);
+    _menu.fontSize = 30;
+    _menu.text = @"MENU";
+    [self addChild:_menu];
     [self addChild:_scores];
   [self.view addSubview:_tableView];
+}
+
+- (void)setReturnScene:(SKScene *)returnScene {
+    _returnScene = returnScene;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -100,6 +112,19 @@ _tableView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.si
 
   NSLog(@"%ld", self.bestScores.count);
   return self.bestScores.count;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch* touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self.scene];
+    
+    if(CGRectContainsPoint(_menu.frame, location)){
+        SKTransition* transition = [SKTransition fadeWithDuration:0.5];
+        [_tableView removeFromSuperview];
+        __weak typeof(self) weakMe = self;
+        
+        [weakMe.view presentScene:_returnScene transition:transition];
+    }
 }
 
 @end

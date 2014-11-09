@@ -25,7 +25,7 @@ const int offset = 60;
       [_cdHelper.context executeFetchRequest:request error:nil];
 
   QuestionWithAnswer *currentQuestion =
-      fetchedObjects[arc4random_uniform(fetchedObjects.count)];
+      fetchedObjects[arc4random_uniform((uint32_t)fetchedObjects.count)];
   _question = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
   _answerOne = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
   _answerTwo = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];

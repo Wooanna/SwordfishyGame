@@ -1,11 +1,3 @@
-//
-//  TALocationProvider.m
-//  SwordfishGame
-//
-//  Created by Admin on 11/8/14.
-//  Copyright (c) 2014 admin. All rights reserved.
-//
-
 #import "TALocationProvider.h"
 #import <CoreLocation/CoreLocation.h>
 

@@ -59,7 +59,6 @@ static const uint32_t questionCategory = 0x1 << 3;
     self.backgroundColor = [SKColor greenColor];
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     extractor = [[AtlasImagesExtractor alloc] init];
-    // self.physicsBody.categoryBitMask = frameCategory;
     fishMaker = [[FishMaker alloc] initWithParentScene:self];
     _pausedScene = [PausedScene sceneWithSize:self.size];
 
@@ -77,7 +76,7 @@ static const uint32_t questionCategory = 0x1 << 3;
     _pinchOutToPouse = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     _pinchOutToPouse.text = @"Pinch out to pause the game";
     _pinchOutToPouse.position = CGPointMake(
-        self.size.width / 2, self.size.height - scoreLabel.frame.size.height -
+    self.size.width / 2, self.size.height - scoreLabel.frame.size.height -
                                  _pinchOutToPouse.frame.size.height - 40);
     _pinchOutToPouse.fontSize = 40;
     _pinchOutToPouse.zPosition = 20;
@@ -160,18 +159,16 @@ static const uint32_t questionCategory = 0x1 << 3;
 }
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)recognizer {
-  __weak typeof(self) weakMe = self;
 
-  [weakMe.view presentScene:_returnScene];
+    SKTransition *transition = [SKTransition fadeWithDuration:0.5];
+    
+    [self performSelector:@selector(pauseGame) withObject:nil afterDelay:1];
+    
+    [self.view presentScene:_pausedScene transition:transition];
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
-  SKTransition *transition = [SKTransition fadeWithDuration:0.5];
-
-  [self performSelector:@selector(pauseGame) withObject:nil afterDelay:1];
-
-  [self.view presentScene:_pausedScene transition:transition];
-}
+  }
 
 - (void)setScene {
   [_pausedScene setReturnScene:self];

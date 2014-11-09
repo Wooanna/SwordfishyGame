@@ -24,7 +24,17 @@
   NSArray *buttons;
   BubbleMaker *_bubbleMaker;
     GameScene *_gameScene;
+    ScoresView *_scoresView;
   NetworkConnectionChecker *_connectionChecker;
+}
+
+-(instancetype)initWithSize:(CGSize)size{
+    if(self = [super initWithSize:size]){
+        self.backgroundColor = [UIColor blackColor];
+        
+        
+    }
+    return self;
 }
 void showButtons(NSArray *buttons) {
 
@@ -132,8 +142,13 @@ void showButtons(NSArray *buttons) {
   showButtons(buttons);
 }
 
-- (void)setScene {
+- (void)setGameScene {
     [_gameScene setReturnScene:self];
+   }
+
+-(void)setScoresScene{
+    [_scoresView setReturnScene:self];
+
 }
 
 - (void)update:(NSTimeInterval)currentTime {
@@ -149,7 +164,7 @@ void showButtons(NSArray *buttons) {
       
      
     _gameScene = [GameScene sceneWithSize:self.size];
-      [self performSelector:@selector(setScene) withObject:nil afterDelay:0.01];
+      [self performSelector:@selector(setGameScene) withObject:nil afterDelay:0.01];
 
     [self.view presentScene:_gameScene transition:transition];
       
@@ -157,9 +172,12 @@ void showButtons(NSArray *buttons) {
     if ([_connectionChecker connection]) {
 
       SKTransition *transition = [SKTransition fadeWithDuration:0.5];
-      ScoresView *scoresView = [ScoresView sceneWithSize:self.size];
+        
+        [self performSelector:@selector(setScoresScene) withObject:nil afterDelay:0.01];
 
-      [self.view presentScene:scoresView transition:transition];
+      _scoresView = [ScoresView sceneWithSize:self.size];
+
+      [self.view presentScene:_scoresView transition:transition];
     } else {
       UIAlertView *alert =
           [[UIAlertView alloc] initWithTitle:@"No network connection"

@@ -29,7 +29,7 @@ static const uint32_t questionCategory = 0x1 << 3;
       [extractor ExtractImagesFromAtlasNamed:@"fishes"];
   SKSpriteNode *fish;
   SKSpriteNode *questionFish;
-  int texture = arc4random_uniform(fishesTextures.count);
+  int texture = arc4random_uniform((uint32_t)fishesTextures.count);
   NSLog(@"%d", texture);
   if (texture == 2) {
     questionFish = [SKSpriteNode spriteNodeWithTexture:fishesTextures[2]];
