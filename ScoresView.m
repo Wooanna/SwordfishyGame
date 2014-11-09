@@ -11,11 +11,10 @@
 @end
 
 @implementation ScoresView {
-  //  UITableView *_tableView;
   UITableViewCell *_cell;
 }
 
-// for downloading players bestScores**************************************
+// for downloading players bestScores
 - (instancetype)init {
   self = [super init];
   if (self) {
@@ -24,31 +23,14 @@
   return self;
 }
 
-//- (id)initWithCoder:(NSCoder *)aDecoder {
-//    if (self = [super initWithCoder:aDecoder]) {
-//        self.bestScores = [NSMutableArray array];
-//    }
-//    return self;
-//}
-//
-//- (instancetype)initWithNibName:(NSString *)nibNameOrNil
-//                         bundle:(NSBundle *)nibBundleOrNil {
-//
-//    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-//        self.bestScores = [NSMutableArray array];
-//    }
-//    return self;
-//}
-// ************************************************************************
-
 - (void)didMoveToView:(SKView *)view {
   [super didMoveToView:view];
   BestScore *bestScore = [BestScore object];
 
-  // for downloading players bestScores************************************
+  // for downloading players bestScores
   PFQuery *query = [PFQuery queryWithClassName:[bestScore parseClassName]];
   [query orderByDescending:@"playerScore"];
-  //    query.limit = 10;
+
   __weak id weakSelf = self;
   [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
@@ -62,19 +44,9 @@
 
         [weakSelf setBestScores:[NSMutableArray arrayWithArray:sortedArray]];
         [[weakSelf tableView] reloadData];
-        //        [_tableView reloadData];
       }
   }];
-  //    __weak id weakSelf = self;
-  //    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError
-  //    *error) {
-  //        if(!error){
-  //            [weakSelf setPeople:[NSMutableArray arrayWithArray:objects]];
-  //            [[weakSelf tableViewPeople] reloadData];
-  //        }
-  //    }];
 
-  // **********************************************************************
   _tableView =
       [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width,
                                                     self.frame.size.height)];
@@ -96,8 +68,16 @@
   }
   BestScore *currentScore = self.bestScores[indexPath.row];
 
-  _cell.detailTextLabel.text = [currentScore.playerResult stringValue];
-  _cell.textLabel.text = currentScore.playerName;
+  NSString *textLabel =
+      [[NSString alloc] initWithFormat:(@"%@ - %@"), currentScore.playerName,
+                                       currentScore.playerResult];
+  NSString *detailTextLabel = [[NSString alloc]
+      initWithFormat:(@"%@   %@   %@"), currentScore.locationName,
+                     currentScore.subLocality, currentScore.countryName];
+
+  _cell.textLabel.text = textLabel;
+
+  _cell.detailTextLabel.text = detailTextLabel;
 
   return _cell;
 }
