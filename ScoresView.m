@@ -2,6 +2,7 @@
 #import <Parse/Parse.h>
 #import "BestScore.h"
 
+
 @interface ScoresView () <UITableViewDataSource, UITableViewDelegate>
 
 // for downloading players bestScores
@@ -12,6 +13,7 @@
 
 @implementation ScoresView {
   UITableViewCell *_cell;
+    SKLabelNode *_scores;
 }
 
 // for downloading players bestScores
@@ -19,6 +21,7 @@
   self = [super init];
   if (self) {
     self.bestScores = [NSMutableArray array];
+      
   }
   return self;
 }
@@ -48,10 +51,18 @@
   }];
 
   _tableView =
-      [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width,
-                                                    self.frame.size.height)];
+      [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width/3,
+                                                    self.frame.size.height/2 - 100)];
   _tableView.delegate = self;
   _tableView.dataSource = self;
+    _tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"notebook_sheet.jpg"]];
+_tableView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    
+    _scores = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    _scores.position = CGPointMake(self.size.width/2, self.size.height - 50);
+    _scores.fontSize = 30;
+    _scores.text = @"SCORES: ";
+    [self addChild:_scores];
   [self.view addSubview:_tableView];
 }
 
@@ -61,10 +72,12 @@
   NSString *identifier = @"cell";
 
   _cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-
-  if (!_cell) {
+    if (!_cell) {
     _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:identifier];
+        [_cell setBackgroundColor:[UIColor clearColor]];
+        _cell.textLabel.font = [UIFont fontWithName:@"Chalkduster" size:15];
+
   }
   BestScore *currentScore = self.bestScores[indexPath.row];
 

@@ -116,16 +116,16 @@
   //        NSLog(@"Right answer = %@", q.rightAnswer);
   //      }
 
-  // DELETE:
-  int k = 1;
-  for (QuestionWithAnswer *item in fetchedObjects) {
-    if (k > 0) {
-      NSLog(@"Deleting Object '%@'", item.question);
-      [_cdHelper.context deleteObject:item];
-    }
-    k++;
-  }
-  [self.cdHelper saveContext];
+  //  // DELETE:
+  //  int k = 1;
+  //  for (QuestionWithAnswer *item in fetchedObjects) {
+  //    if (k > 0) {
+  //      NSLog(@"Deleting Object '%@'", item.question);
+  //      [_cdHelper.context deleteObject:item];
+  //    }
+  //    k++;
+  //  }
+  //  [self.cdHelper saveContext];
 
   // Download new questions from Parse.com
   PFQuery *query = [PFQuery queryWithClassName:[question parseClassName]];

@@ -62,6 +62,7 @@
 }
 
 - (void)locationUpdated:(CLLocation *)geoLocation {
+   
   NSString *geoLocationMessage =
       [NSString stringWithFormat:@"Your position is (%lf, %lf)",
                                  geoLocation.coordinate.latitude,
@@ -98,7 +99,7 @@
       BestScore *bestScore = [BestScore object];
       [bestScore setPlayerName:name];
       [bestScore setPlayerResult:score];
-
+       
       [locationProvider getLocationWithTarget:self
                                     andAction:@selector(locationUpdated:)];
       [locationProvider getLocationWithBlock:^(CLLocation *geoLocation) {

@@ -14,25 +14,21 @@
   QuestionScene *qScene;
   AtlasImagesExtractor *extractor;
   FishMaker *fishMaker;
-    SKLabelNode *_pinchOutToPouse;
-    SKAction *_fadeOut;
-    SKAction * _fadeIn;
-    SKAction *_fadeInfadeOut;
-    
+  SKLabelNode *_pinchOutToPouse;
+  SKAction *_fadeOut;
+  SKAction *_fadeIn;
+  SKAction *_fadeInfadeOut;
 }
 
 static const uint32_t fishyCategory = 0x1 << 0;
-static const uint32_t shipCategory = 0x1 << 1;
 static const uint32_t fishCategory = 0x1 << 2;
 static const uint32_t questionCategory = 0x1 << 3;
-static const uint32_t frameCategory = 0x1 << 4;
 
 // initialize and setup everything about out player our player
 - (void)InitializeSharky {
 
   NSMutableArray *sharkyTextures = [NSMutableArray array];
   sharkyTextures = [extractor ExtractImagesFromAtlasNamed:@"sharky"];
-  NSLog(@"%@", sharkyTextures);
   SKAction *move =
       [SKAction animateWithTextures:sharkyTextures timePerFrame:0.3];
   SKAction *keepMovingForever = [SKAction repeatActionForever:move];
@@ -73,19 +69,20 @@ static const uint32_t frameCategory = 0x1 << 4;
     _backLayer.position =
         CGPointMake(self.size.width / 2, self.size.height / 2);
     _backLayer.zPosition = -10;
-      
-      _fadeOut = [SKAction fadeAlphaTo:0.0 duration:2];
-      _fadeIn = [SKAction fadeAlphaTo:1 duration:2];
-      _fadeInfadeOut = [SKAction sequence:@[_fadeIn, _fadeOut]];
-      _pinchOutToPouse = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-      _pinchOutToPouse.text = @"Pinch out to pause the game";
-      _pinchOutToPouse.position = CGPointMake(
-                                             self.size.width / 2, self.size.height - scoreLabel.frame.size.height - _pinchOutToPouse.frame.size.height - 40);
-      _pinchOutToPouse.fontSize = 40;
-      _pinchOutToPouse.zPosition = 20;
-      _pinchOutToPouse.alpha = 0.1;
-      [_pinchOutToPouse runAction:_fadeInfadeOut];
-      
+
+    _fadeOut = [SKAction fadeAlphaTo:0.0 duration:2];
+    _fadeIn = [SKAction fadeAlphaTo:1 duration:2];
+    _fadeInfadeOut = [SKAction sequence:@[ _fadeIn, _fadeOut ]];
+    _pinchOutToPouse = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    _pinchOutToPouse.text = @"Pinch out to pause the game";
+    _pinchOutToPouse.position = CGPointMake(
+        self.size.width / 2, self.size.height - scoreLabel.frame.size.height -
+                                 _pinchOutToPouse.frame.size.height - 40);
+    _pinchOutToPouse.fontSize = 40;
+    _pinchOutToPouse.zPosition = 20;
+    _pinchOutToPouse.alpha = 0.1;
+    [_pinchOutToPouse runAction:_fadeInfadeOut];
+
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
     scoreLabel.position = CGPointMake(
@@ -94,7 +91,7 @@ static const uint32_t frameCategory = 0x1 << 4;
     scoreLabel.zPosition = 20;
     [self addChild:scoreLabel];
     [self addChild:_backLayer];
-      [self addChild:_pinchOutToPouse];
+    [self addChild:_pinchOutToPouse];
 
     [self InitializeSharky];
   }
@@ -114,9 +111,9 @@ static const uint32_t frameCategory = 0x1 << 4;
               action:@selector(handleSwipeRight:)];
   [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
 
-  pinchGesture = [[UIPinchGestureRecognizer alloc]
-      initWithTarget:self
-              action:@selector(handlePinch:)];
+  pinchGesture =
+      [[UIPinchGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(handlePinch:)];
 
   longPresGesture = [[UILongPressGestureRecognizer alloc]
       initWithTarget:self
@@ -147,10 +144,10 @@ static const uint32_t frameCategory = 0x1 << 4;
 }
 
 - (void)setReturnScene:(SKScene *)returnScene {
-    _returnScene = returnScene;
+  _returnScene = returnScene;
 }
 
-//GESTURES
+// GESTURES
 - (void)handleSwipeLeft:(UISwipeGestureRecognizer *)recognizer {
 
   [_sharky.physicsBody applyImpulse:CGVectorMake(-70, 0)];
@@ -162,11 +159,10 @@ static const uint32_t frameCategory = 0x1 << 4;
 }
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)recognizer {
-    __weak typeof(self) weakMe = self;
-    
-    [weakMe.view presentScene:_returnScene];
-    
-  }
+  __weak typeof(self) weakMe = self;
+
+  [weakMe.view presentScene:_returnScene];
+}
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
   SKTransition *transition = [SKTransition fadeWithDuration:0.5];
@@ -193,17 +189,15 @@ static const uint32_t frameCategory = 0x1 << 4;
 
   if (contact.bodyB.categoryBitMask == fishCategory) {
     score += 10;
-    NSLog(@"%d", secondBody.categoryBitMask);
 
     [secondBody.node removeFromParent];
   }
   if (contact.bodyB.categoryBitMask == questionCategory) {
-    NSLog(@"%d", secondBody.categoryBitMask);
 
-      SKTexture * texture = [SKTexture textureWithImageNamed:@"papirus.png"];
-    CGSize sceneSize = CGSizeMake(self.size.width - 200, self.size.height - 100);
-    qScene =
-        [QuestionScene spriteNodeWithTexture:texture size:sceneSize];
+    SKTexture *texture = [SKTexture textureWithImageNamed:@"papirus.png"];
+    CGSize sceneSize =
+        CGSizeMake(self.size.width - 200, self.size.height - 100);
+    qScene = [QuestionScene spriteNodeWithTexture:texture size:sceneSize];
     qScene.zPosition = 50;
     qScene.position = CGPointMake(self.size.width / 2, self.size.height / 2);
     [secondBody.node removeFromParent];
@@ -219,18 +213,17 @@ static const uint32_t frameCategory = 0x1 << 4;
   CGPoint location = [touch locationInNode:qScene];
 
   if (CGRectContainsPoint([qScene getAnswerOneFrame], location)) {
-      
+
     [qScene removeFromParent];
     self.scene.view.paused = NO;
-      
+
   } else if (CGRectContainsPoint([qScene getAnswerTwoFrame], location)) {
     [qScene removeFromParent];
     self.scene.view.paused = NO;
   } else if (CGRectContainsPoint([qScene getAnswerTreeFrame], location)) {
-      SKTransition* transition = [SKTransition fadeWithDuration:0.5];
-      GameOverScene *gameOverScene = [GameOverScene sceneWithSize:self.size];
-      [self.view presentScene:gameOverScene ];
-
+    SKTransition *transition = [SKTransition fadeWithDuration:0.5];
+    GameOverScene *gameOverScene = [GameOverScene sceneWithSize:self.size];
+    [self.view presentScene:gameOverScene];
   }
 }
 

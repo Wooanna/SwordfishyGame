@@ -60,6 +60,7 @@
 		84E6EBB51A0E39C400DB6D6A /* AtlasImagesExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EBB41A0E39C400DB6D6A /* AtlasImagesExtractor.m */; };
 		84E6EBB71A0E644600DB6D6A /* papirus.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EBB61A0E644600DB6D6A /* papirus.png */; };
 		84E6EBB91A0E645000DB6D6A /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EBB81A0E645000DB6D6A /* gameover.png */; };
+		84E6EBC51A0F96FC00DB6D6A /* notebook_sheet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EBC41A0F96FC00DB6D6A /* notebook_sheet.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		84E6EBB41A0E39C400DB6D6A /* AtlasImagesExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtlasImagesExtractor.m; sourceTree = "<group>"; };
 		84E6EBB61A0E644600DB6D6A /* papirus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = papirus.png; sourceTree = "<group>"; };
 		84E6EBB81A0E645000DB6D6A /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameover.png; sourceTree = "<group>"; };
+		84E6EBC41A0F96FC00DB6D6A /* notebook_sheet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = notebook_sheet.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 		8425DF2A1A0B75BD00953FD5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84E6EBC41A0F96FC00DB6D6A /* notebook_sheet.jpg */,
 				84E6EBB81A0E645000DB6D6A /* gameover.png */,
 				84E6EBB61A0E644600DB6D6A /* papirus.png */,
 				84A82D3F1A0D372D007ED656 /* Underwater.wav */,
@@ -456,6 +459,7 @@
 				8425DF411A0B770000953FD5 /* bubble.png in Resources */,
 				8425DF431A0B770000953FD5 /* game_back@2x.png in Resources */,
 				84E6EBB91A0E645000DB6D6A /* gameover.png in Resources */,
+				84E6EBC51A0F96FC00DB6D6A /* notebook_sheet.jpg in Resources */,
 				8425DF461A0B770000953FD5 /* sharky1@2x.png in Resources */,
 				8425DF471A0B770000953FD5 /* sharky2@2x.png in Resources */,
 				8425DF4A1A0B770000953FD5 /* menu_back.png in Resources */,
