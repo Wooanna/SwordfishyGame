@@ -12,18 +12,17 @@
 #import "BestScore.h"
 #import "CoreDataHelper.h"
 #import "QuestionWithAnswer.h"
+#import "QuestionWithAns.h"
 
-// *********************************************************************
 @interface GameViewController ()
 
-// for downloading players bestScores
-@property(nonatomic, strong) NSMutableArray *bestScores;
+// for downloading new questions
+@property(nonatomic, strong) NSMutableArray *quests;
 
 // for coredata
 @property(nonatomic, strong) CoreDataHelper *cdHelper;
 
 @end
-// **********************************************************************
 
 @implementation SKScene (Unarchive)
 
@@ -48,31 +47,29 @@
 
 @implementation GameViewController
 
-// for downloading players bestScores**************************************
+// for downloading from Parse.com
 - (instancetype)init {
   self = [super init];
   if (self) {
-    self.bestScores = [NSMutableArray array];
+    self.quests = [NSMutableArray array];
   }
   return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   if (self = [super initWithCoder:aDecoder]) {
-    self.bestScores = [NSMutableArray array];
+    self.quests = [NSMutableArray array];
   }
   return self;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil
                          bundle:(NSBundle *)nibBundleOrNil {
-
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    self.bestScores = [NSMutableArray array];
+    self.quests = [NSMutableArray array];
   }
   return self;
 }
-// ************************************************************************
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -92,98 +89,74 @@
   // Present the scene.
   [skView presentScene:scene];
 
-  //  // Add object to Parse.com **********************************************
-  //  BestScore *bestScore = [BestScore object];
-  //  [bestScore setPlayerName:@"1"];
-  //  [bestScore setPlayerResult:@5];
-  //
-  //  [bestScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-  //      if (succeeded) {
-  //        NSLog(@"Result saved");
-  //      } else {
-  //        NSLog(@"%@", error);
+  PFObject *question = [PFObject objectWithClassName:@"QuestionsWithAns"];
+
+  //  // Add quests to Parse.com
+  //  question[@"question"] = @"1 question";
+  //  question[@"rightAnswer"] = @2;
+  //  question[@"answerOne"] = @"Answer 1";
+  //  question[@"answerTwo"] = @"Answer 2";
+  //  question[@"answerThree"] = @"Answer 3";
+  //  [question saveInBackground];
+
+  // Read questions from CoreData
+  _cdHelper = [[CoreDataHelper alloc] init];
+  [_cdHelper setupCoreData];
+
+  NSFetchRequest *request =
+      [NSFetchRequest fetchRequestWithEntityName:@"QuestionWithAnswer"];
+
+  NSArray *fetchedObjects =
+      [_cdHelper.context executeFetchRequest:request error:nil];
+  //      for (QuestionWithAnswer *q in fetchedObjects) {
+  //        NSLog(@"Question = %@", q.question);
+  //        NSLog(@"Answer A = %@", q.answerOne);
+  //        NSLog(@"Answer B = %@", q.answerTwo);
+  //        NSLog(@"Answer C = %@", q.answerThree);
+  //        NSLog(@"Right answer = %@", q.rightAnswer);
   //      }
-  //  }];
 
-  //  PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
-  //  gameScore[@"user"] = @"Yoanna";
-  //  gameScore[@"result"] = @99;
-  //  [gameScore saveInBackground];
-  // **********************************************************************
+  // DELETE:
+  int k = 1;
+  for (QuestionWithAnswer *item in fetchedObjects) {
+    if (k > 0) {
+      NSLog(@"Deleting Object '%@'", item.question);
+      [_cdHelper.context deleteObject:item];
+    }
+    k++;
+  }
+  [self.cdHelper saveContext];
 
-  //  // for downloading players bestScores************************************
-  //  PFQuery *query = [PFQuery queryWithClassName:[bestScore parseClassName]];
-  //  [query orderByDescending:@"playerScore"];
-  //  query.limit = 10;
-  //  //  __weak id weakSelf = self;
-  //  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError
-  //  *error) {
-  //      if (!error) {
-  //        NSLog(@"%@", objects);
-  //        //          [weakSelf setPeople:[NSMutableArray
-  //        //          arrayWithArray:objects]];
-  //        //          [[weakSelf tableViewPeople] reloadData];
-  //      }
-  //  }];
-  //  // **********************************************************************
+  // Download new questions from Parse.com
+  PFQuery *query = [PFQuery queryWithClassName:[question parseClassName]];
+  [query orderByAscending:@"createdAt"];
+  query.limit = query.countObjects - fetchedObjects.count;
+  NSLog(@"%ld", query.countObjects);
+  NSLog(@"%ld", fetchedObjects.count);
+  NSLog(@"%ld", query.limit);
 
-  //  // step 1: Insert some data
-  //  _cdHelper = [[CoreDataHelper alloc] init];
-  //  [_cdHelper setupCoreData];
-  //
-  //  QuestionWithAnswer *quest1 =
-  //      [NSEntityDescription
-  //      insertNewObjectForEntityForName:@"QuestionWithAnswer"
-  //                                    inManagedObjectContext:_cdHelper.context];
-  //  quest1.question = @"Vapros 1";
-  //  quest1.answerOne = @"Otgovor 1 na Vapros1";
-  //  quest1.answerTwo = @"Otgovor 2 na Vapros1";
-  //  quest1.answerThree = @"Otgovor 3 na Vapros1";
-  //  quest1.rightAnswer = @3;
-  //
-  //  QuestionWithAnswer *quest2 =
-  //      [NSEntityDescription
-  //      insertNewObjectForEntityForName:@"QuestionWithAnswer"
-  //                                    inManagedObjectContext:_cdHelper.context];
-  //  quest2.question = @"Vapros 4";
-  //  quest2.answerOne = @"Otgovor 1 na Vapros2";
-  //  quest2.answerTwo = @"Otgovor 2 na Vapros2";
-  //  quest2.answerThree = @"Otgovor 3 na Vapros42";
-  //  quest2.rightAnswer = @2;
-  //
-  //  [_cdHelper.context insertObject:quest1];
-  //  [_cdHelper.context insertObject:quest2];
-  //
-  //  [self.cdHelper saveContext];
-  //
-  //  // FETHICNG:
-  //
-  //  NSFetchRequest *request =
-  //      [NSFetchRequest fetchRequestWithEntityName:@"QuestionWithAnswer"];
-  //  //  NSSortDescriptor *sort =
-  //  //      [NSSortDescriptor sortDescriptorWithKey:@"price" ascending:YES];
-  //  //  [request setSortDescriptors:[NSArray arrayWithObject:sort]];
-  //
-  //  NSArray *fetchedObjects =
-  //      [_cdHelper.context executeFetchRequest:request error:nil];
-  //
-  //  for (QuestionWithAnswer *q in fetchedObjects) {
-  //    NSLog(@"Question = %@", q.question);
-  //    NSLog(@"Answer A = %@", q.answerOne);
-  //    NSLog(@"Answer B = %@", q.answerTwo);
-  //    NSLog(@"Answer C = %@", q.answerThree);
-  //    NSLog(@"Right answer = %@", q.rightAnswer);
-  //  }
-  //
-  //  // DELETE:
-  //  //
-  //  //    NSFetchRequest *request =
-  //  //    [NSFetchRequest fetchRequestWithEntityName:@"Item"];
-  //  //    NSArray *fetchedObjects =
-  //  //    [_coreDataHelper.context executeFetchRequest:request error:nil];
-  //  //    for (Item *item in fetchedObjects) { NSLog(@"Deleting Object '%@'",
-  //  //    item.name); [_coreDataHelper.context deleteObject:item];
-  //  //    }
+  __weak id weakSelf = self;
+  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+        NSLog(@"%lu", objects.count);
+
+        for (QuestionWithAnswer *item in objects) {
+          NSLog(@"%@", item);
+
+          QuestionWithAnswer *quest = [NSEntityDescription
+              insertNewObjectForEntityForName:@"QuestionWithAnswer"
+                       inManagedObjectContext:_cdHelper.context];
+
+          quest.question = item.question;
+          [quest setAnswerOne:item.answerOne];
+          [quest setAnswerTwo:item.answerTwo];
+          [quest setAnswerThree:item.answerThree];
+          [quest setRightAnswer:item.rightAnswer];
+          [_cdHelper.context insertObject:quest];
+          [[weakSelf cdHelper] saveContext];
+        }
+      }
+  }];
 }
 
 - (BOOL)shouldAutorotate {
