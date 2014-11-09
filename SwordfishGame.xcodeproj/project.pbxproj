@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8405529F1A0FB7DC003A3AD7 /* bite.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8405529E1A0FB7DC003A3AD7 /* bite.wav */; };
+		840552A11A0FB969003A3AD7 /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 840552A01A0FB969003A3AD7 /* correct.wav */; };
+		840552A31A0FB981003A3AD7 /* incorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 840552A21A0FB981003A3AD7 /* incorrect.wav */; };
 		8425DF2E1A0B767C00953FD5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF2D1A0B767C00953FD5 /* Reachability.m */; };
 		8425DF311A0B76A700953FD5 /* PausedScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF301A0B76A700953FD5 /* PausedScene.m */; };
 		8425DF351A0B76CD00953FD5 /* NetworkConnectionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425DF341A0B76CD00953FD5 /* NetworkConnectionChecker.m */; };
@@ -74,6 +77,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8405529E1A0FB7DC003A3AD7 /* bite.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bite.wav; sourceTree = "<group>"; };
+		840552A01A0FB969003A3AD7 /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
+		840552A21A0FB981003A3AD7 /* incorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = incorrect.wav; sourceTree = "<group>"; };
 		8425DF2C1A0B767C00953FD5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8425DF2D1A0B767C00953FD5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8425DF2F1A0B76A700953FD5 /* PausedScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PausedScene.h; sourceTree = "<group>"; };
@@ -188,6 +194,9 @@
 		8425DF2A1A0B75BD00953FD5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				840552A21A0FB981003A3AD7 /* incorrect.wav */,
+				840552A01A0FB969003A3AD7 /* correct.wav */,
+				8405529E1A0FB7DC003A3AD7 /* bite.wav */,
 				84E6EBC41A0F96FC00DB6D6A /* notebook_sheet.jpg */,
 				84E6EBB81A0E645000DB6D6A /* gameover.png */,
 				84E6EBB61A0E644600DB6D6A /* papirus.png */,
@@ -458,9 +467,12 @@
 				8425DF421A0B770000953FD5 /* fishes.atlas in Resources */,
 				8425DF411A0B770000953FD5 /* bubble.png in Resources */,
 				8425DF431A0B770000953FD5 /* game_back@2x.png in Resources */,
+				840552A11A0FB969003A3AD7 /* correct.wav in Resources */,
 				84E6EBB91A0E645000DB6D6A /* gameover.png in Resources */,
 				84E6EBC51A0F96FC00DB6D6A /* notebook_sheet.jpg in Resources */,
+				840552A31A0FB981003A3AD7 /* incorrect.wav in Resources */,
 				8425DF461A0B770000953FD5 /* sharky1@2x.png in Resources */,
+				8405529F1A0FB7DC003A3AD7 /* bite.wav in Resources */,
 				8425DF471A0B770000953FD5 /* sharky2@2x.png in Resources */,
 				8425DF4A1A0B770000953FD5 /* menu_back.png in Resources */,
 			);

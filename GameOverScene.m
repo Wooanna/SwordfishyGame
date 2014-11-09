@@ -7,18 +7,23 @@
   SKLabelNode *labelDone;
   SKSpriteNode *gameOver;
   SKSpriteNode *waterLayer;
+  int _score;
+  SKLabelNode *yourScoreIs;
 
   // add location
   TALocationProvider *locationProvider;
 }
 
-- (instancetype)initWithSize:(CGSize)size {
+- (instancetype)initWithSize:(CGSize)size andScore:(int) score{
   if (self = [super initWithSize:size]) {
     self.backgroundColor = [UIColor blackColor];
-  }
+      _score = score;
+        }
   return self;
 }
 - (void)didMoveToView:(SKView *)view {
+    
+    [self runAction:[SKAction playSoundFileNamed:@"incorrect.wav" waitForCompletion:NO]];
 
   gameOver = [SKSpriteNode spriteNodeWithImageNamed:@"gameover.png"];
   gameOver.position =
@@ -29,14 +34,15 @@
   waterLayer.position =
       CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
   waterLayer.alpha = 0.5;
+    
+    yourScoreIs = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    yourScoreIs.position = CGPointMake(self.size.width/2 , self.size.height/2 + 50);
+    yourScoreIs.text = [NSString stringWithFormat: @"YourScoreIs %d", _score ];
+    yourScoreIs.fontSize = 40;
+    yourScoreIs.zPosition = 500;
 
   // add location
   locationProvider = [[TALocationProvider alloc] init];
-
-  // TODO: init gameover
-  // Your score is: 5894
-  // To save your score:
-
   textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
   textField.center = self.view.center;
   textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -54,8 +60,10 @@
   labelDone.text = @"DONE";
   labelDone.fontSize = 40;
   labelDone.zPosition = 500;
-  [self addChild:waterLayer];
+    [self runAction:[SKAction playSoundFileNamed:@"incorrect.wav" waitForCompletion:NO]];
 
+  [self addChild:waterLayer];
+    [self addChild:yourScoreIs];
   [self addChild:labelDone];
   [self addChild:gameOver];
   [self.view addSubview:textField];
@@ -68,11 +76,11 @@
                                  geoLocation.coordinate.latitude,
                                  geoLocation.coordinate.longitude];
 
-  [[[UIAlertView alloc] initWithTitle:@"Location updated with target-action"
-                              message:geoLocationMessage
-                             delegate:nil
-                    cancelButtonTitle:@"Ok"
-                    otherButtonTitles:nil, nil] show];
+//  [[[UIAlertView alloc] initWithTitle:@"Location updated with target-action"
+//                              message:geoLocationMessage
+//                             delegate:nil
+//                    cancelButtonTitle:@"Ok"
+//                    otherButtonTitles:nil, nil] show];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -82,8 +90,18 @@
 
   if (CGRectContainsPoint(labelDone.frame, location)) {
     NSString *name = [textField text];
-    NSNumber *score = @200;
+    NSNumber *score = [NSNumber numberWithInt:_score];
 
+      if(name.length >= 12){
+          UIAlertView* nameLength = [[UIAlertView alloc]
+                                     initWithTitle:@"Message"
+                                     message:@"Your name must be shorter than 12 symbols."
+                                     delegate:nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil];
+          [nameLength show];
+
+      }
     if (name.length < 3) {
 
       UIAlertView* nameLength = [[UIAlertView alloc]
@@ -108,12 +126,12 @@
                                          geoLocation.coordinate.latitude,
                                          geoLocation.coordinate.longitude];
 
-          [[[UIAlertView alloc] initWithTitle:@"Location updated"
-                                      message:geoLocationMessage
-                                     delegate:nil
-                            cancelButtonTitle:@"Ok"
-                            otherButtonTitles:nil, nil] show];
-
+//          [[[UIAlertView alloc] initWithTitle:@"Location updated"
+//                                      message:geoLocationMessage
+//                                     delegate:nil
+//                            cancelButtonTitle:@"Ok"
+//                            otherButtonTitles:nil, nil] show];
+//
           CLGeocoder *coder = [[CLGeocoder alloc] init];
           [coder
               reverseGeocodeLocation:geoLocation

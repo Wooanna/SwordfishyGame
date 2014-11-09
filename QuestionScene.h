@@ -16,8 +16,11 @@
 @property (strong, nonatomic,  readonly)SKLabelNode* answerOne;
 @property (strong, nonatomic,  readonly)SKLabelNode* answerTwo;
 @property (strong, nonatomic,  readonly)SKLabelNode* answerTree;
+@property (strong, nonatomic, readonly)NSNumber* rightAnswer;
+
 -(void)initQuestionNode;
 -(CGRect) getAnswerOneFrame;
 -(CGRect) getAnswerTwoFrame;
 -(CGRect) getAnswerTreeFrame;
+-(NSNumber*) getRightAnswer;
 @end

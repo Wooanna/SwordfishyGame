@@ -4,6 +4,7 @@
 #import "AtlasImagesExtractor.h"
 #import "FishMaker.h"
 #import "GameOverScene.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation GameScene {
 
@@ -189,10 +190,17 @@ static const uint32_t questionCategory = 0x1 << 3;
 
   if (contact.bodyB.categoryBitMask == fishCategory) {
     score += 10;
+    [self runAction:[SKAction playSoundFileNamed:@"bite.wav"
+                               waitForCompletion:NO]];
+      AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+      AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
     [secondBody.node removeFromParent];
   }
   if (contact.bodyB.categoryBitMask == questionCategory) {
+
+      AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+      AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
     SKTexture *texture = [SKTexture textureWithImageNamed:@"papirus.png"];
     CGSize sceneSize =
@@ -204,7 +212,7 @@ static const uint32_t questionCategory = 0x1 << 3;
     [qScene initQuestionNode];
     [self addChild:qScene];
     self.scene.view.paused = YES;
-  }
+        }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -213,16 +221,33 @@ static const uint32_t questionCategory = 0x1 << 3;
   CGPoint location = [touch locationInNode:qScene];
 
   if (CGRectContainsPoint([qScene getAnswerOneFrame], location)) {
-
-    [qScene removeFromParent];
-    self.scene.view.paused = NO;
+    [self validateAnswerWithRightAnswer:[qScene getRightAnswer]
+                        andChosenAnswer:@1];
 
   } else if (CGRectContainsPoint([qScene getAnswerTwoFrame], location)) {
+    [self validateAnswerWithRightAnswer:[qScene getRightAnswer]
+                        andChosenAnswer:@2];
+
+  } else if (CGRectContainsPoint([qScene getAnswerTreeFrame], location)) {
+    [self validateAnswerWithRightAnswer:[qScene getRightAnswer]
+                        andChosenAnswer:@3];
+  }
+}
+
+- (void)validateAnswerWithRightAnswer:(NSNumber *)rightAnswer
+                      andChosenAnswer:(NSNumber *)chosenAnswer {
+
+  if (rightAnswer == chosenAnswer) {
+
     [qScene removeFromParent];
     self.scene.view.paused = NO;
-  } else if (CGRectContainsPoint([qScene getAnswerTreeFrame], location)) {
-    SKTransition *transition = [SKTransition fadeWithDuration:0.5];
-    GameOverScene *gameOverScene = [GameOverScene sceneWithSize:self.size];
+    [self runAction:[SKAction playSoundFileNamed:@"correct.wav"
+                               waitForCompletion:YES]];
+
+  } else {
+
+    GameOverScene *gameOverScene =
+        [[GameOverScene alloc] initWithSize:self.size andScore:score];
     [self.view presentScene:gameOverScene];
   }
 }

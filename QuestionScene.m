@@ -1,11 +1,3 @@
-//
-//  QuestionScene.m
-//  SwordfishGame
-//
-//  Created by admin on 11/7/14.
-//  Copyright (c) 2014 admin. All rights reserved.
-//
-
 #import "QuestionScene.h"
 #import "CoreDataHelper.h"
 #import "QuestionWithAnswer.h"
@@ -19,6 +11,8 @@
 
 @implementation QuestionScene
 
+const int fontSize = 25;
+const int offset = 60;
 - (void)initQuestionNode {
 
   _cdHelper = [[CoreDataHelper alloc] init];
@@ -30,14 +24,6 @@
   NSArray *fetchedObjects =
       [_cdHelper.context executeFetchRequest:request error:nil];
 
-  for (QuestionWithAnswer *q in fetchedObjects) {
-    NSLog(@"Question = %@", q.question);
-    NSLog(@"Answer A = %@", q.answerOne);
-    NSLog(@"Answer B = %@", q.answerTwo);
-    NSLog(@"Answer C = %@", q.answerThree);
-    NSLog(@"Right answer = %@", q.rightAnswer);
-  }
-
   QuestionWithAnswer *currentQuestion =
       fetchedObjects[arc4random_uniform(fetchedObjects.count)];
   _question = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
@@ -45,30 +31,35 @@
   _answerTwo = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
   _answerTree = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 
-  _question.position = CGPointMake(self.size.width/2 -self.size.width/2, self.size.height/2 - self.size.height/2 + 120);
+  _question.position =
+      CGPointMake(self.size.width / 2 - self.size.width / 2,
+                  self.size.height / 2 - self.size.height / 2 + 120);
   _question.text = currentQuestion.question;
-  _question.fontSize = 20;
-    _question.fontColor = [UIColor brownColor];
+  _question.fontSize = fontSize;
+  _question.fontColor = [UIColor brownColor];
 
   _answerOne.position =
-      CGPointMake(self.size.width/2 -self.size.width/2 , self.size.height/2 - self.size.height/2 - 100);
+      CGPointMake(self.size.width / 2 - self.size.width / 2,
+                  self.size.height / 2 - self.size.height / 2 - 2*offset);
   _answerOne.text = currentQuestion.answerOne;
-  _answerOne.fontSize = 20;
-     _answerOne.fontColor = [UIColor brownColor];
+  _answerOne.fontSize = fontSize;
+  _answerOne.fontColor = [UIColor brownColor];
 
   _answerTwo.position =
-      CGPointMake(self.size.width/2 -self.size.width/2, self.size.height/2 - self.size.height/2 - 50);
+      CGPointMake(self.size.width / 2 - self.size.width / 2,
+                  self.size.height / 2 - self.size.height / 2 - offset);
   _answerTwo.text = currentQuestion.answerTwo;
-  _answerTwo.fontSize = 20;
-     _answerTwo.fontColor = [UIColor brownColor];
+  _answerTwo.fontSize = fontSize;
+  _answerTwo.fontColor = [UIColor brownColor];
 
   _answerTree.position =
-      CGPointMake(self.size.width/2 -self.size.width/2, self.size.height/2 - self.size.height/2 );
+      CGPointMake(self.size.width / 2 - self.size.width / 2,
+                  self.size.height / 2 - self.size.height / 2);
   _answerTree.text = currentQuestion.answerThree;
-  _answerTree.fontSize = 20;
-     _answerTree.fontColor = [UIColor brownColor];
-    
-  
+  _answerTree.fontSize = fontSize;
+  _answerTree.fontColor = [UIColor brownColor];
+
+  _rightAnswer = currentQuestion.rightAnswer;
 
   [self addChild:_question];
   [self addChild:_answerOne];
@@ -76,15 +67,18 @@
   [self addChild:_answerTree];
 }
 
--(CGRect)getAnswerOneFrame{
-        return  _answerOne.frame;
+- (CGRect)getAnswerOneFrame {
+  return _answerOne.frame;
 }
--(CGRect)getAnswerTwoFrame{
-    return  _answerTwo.frame;
+- (CGRect)getAnswerTwoFrame {
+  return _answerTwo.frame;
 }
--(CGRect)getAnswerTreeFrame{
-    return  _answerTree.frame;
+- (CGRect)getAnswerTreeFrame {
+  return _answerTree.frame;
 }
 
+- (NSNumber *)getRightAnswer {
+  return _rightAnswer;
+}
 
-   @end
+@end

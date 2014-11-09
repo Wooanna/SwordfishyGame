@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  SwordfishGame
-//
-//  Created by admin on 11/1/14.
-//  Copyright (c) 2014 admin. All rights reserved.
-//
-
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
@@ -33,6 +25,7 @@
   audioPlayer1.delegate = self;
   audioPlayer1.numberOfLoops = -1;
   [audioPlayer1 play];
+    
   // ***************************************************************************
 
   return YES;
