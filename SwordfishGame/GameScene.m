@@ -18,6 +18,7 @@
     SKAction *_fadeOut;
     SKAction * _fadeIn;
     SKAction *_fadeInfadeOut;
+    
 }
 
 static const uint32_t fishyCategory = 0x1 << 0;
@@ -113,15 +114,15 @@ static const uint32_t frameCategory = 0x1 << 4;
               action:@selector(handleSwipeRight:)];
   [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
 
-  rotationGesture = [[UIRotationGestureRecognizer alloc]
+  pinchGesture = [[UIPinchGestureRecognizer alloc]
       initWithTarget:self
-              action:@selector(handleRotation:)];
+              action:@selector(handlePinch:)];
 
   longPresGesture = [[UILongPressGestureRecognizer alloc]
       initWithTarget:self
               action:@selector(handleLongPress:)];
 
-  [self.view addGestureRecognizer:rotationGesture];
+  [self.view addGestureRecognizer:pinchGesture];
   [self.view addGestureRecognizer:swipeLeftGesture];
   [self.view addGestureRecognizer:swipeRightGesture];
   [self.view addGestureRecognizer:longPresGesture];
@@ -145,6 +146,10 @@ static const uint32_t frameCategory = 0x1 << 4;
   scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
 }
 
+- (void)setReturnScene:(SKScene *)returnScene {
+    _returnScene = returnScene;
+}
+
 //GESTURES
 - (void)handleSwipeLeft:(UISwipeGestureRecognizer *)recognizer {
 
@@ -156,7 +161,11 @@ static const uint32_t frameCategory = 0x1 << 4;
   [_sharky.physicsBody applyImpulse:CGVectorMake(170, 0)];
 }
 
-- (void)handleRotation:(UIRotationGestureRecognizer *)recognizer {
+- (void)handlePinch:(UIPinchGestureRecognizer *)recognizer {
+    __weak typeof(self) weakMe = self;
+    
+    [weakMe.view presentScene:_returnScene];
+    
   }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
@@ -192,7 +201,7 @@ static const uint32_t frameCategory = 0x1 << 4;
     NSLog(@"%d", secondBody.categoryBitMask);
 
       SKTexture * texture = [SKTexture textureWithImageNamed:@"papirus.png"];
-    CGSize sceneSize = CGSizeMake(self.size.width / 2, self.size.height / 2);
+    CGSize sceneSize = CGSizeMake(self.size.width - 200, self.size.height - 100);
     qScene =
         [QuestionScene spriteNodeWithTexture:texture size:sceneSize];
     qScene.zPosition = 50;

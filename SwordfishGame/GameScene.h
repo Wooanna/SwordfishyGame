@@ -12,10 +12,16 @@
     
     UILongPressGestureRecognizer *longPresGesture;
     
+    UIPinchGestureRecognizer* pinchGesture;
+    
     SKLabelNode *scoreLabel;
     
     int score;
     
-    
+    SKScene* parentScene;
 }
+
+@property(strong, nonatomic, readonly) SKScene *returnScene;
+
+- (void)setReturnScene:(SKScene *)returnScene;
 @end

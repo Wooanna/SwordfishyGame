@@ -83,57 +83,70 @@
     NSString *name = [textField text];
     NSNumber *score = @200;
 
-    // Add score to Parse.com
-    BestScore *bestScore = [BestScore object];
-    [bestScore setPlayerName:name];
-    [bestScore setPlayerResult:score];
+    if (name.length < 3) {
 
-    [locationProvider getLocationWithTarget:self
-                                  andAction:@selector(locationUpdated:)];
-    [locationProvider getLocationWithBlock:^(CLLocation *geoLocation) {
-        NSString *geoLocationMessage =
-            [NSString stringWithFormat:@"Your position is (%lf, %lf)",
-                                       geoLocation.coordinate.latitude,
-                                       geoLocation.coordinate.longitude];
+      UIAlertView* nameLength = [[UIAlertView alloc]
+              initWithTitle:@"Message"
+                    message:@"Your name must be longer than 3 symbols"
+                   delegate:nil
+          cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [nameLength show];
+        
+    } else {
+      // Add score to Parse.com
+      BestScore *bestScore = [BestScore object];
+      [bestScore setPlayerName:name];
+      [bestScore setPlayerResult:score];
 
-        [[[UIAlertView alloc] initWithTitle:@"Location updated"
-                                    message:geoLocationMessage
-                                   delegate:nil
-                          cancelButtonTitle:@"Ok"
-                          otherButtonTitles:nil, nil] show];
+      [locationProvider getLocationWithTarget:self
+                                    andAction:@selector(locationUpdated:)];
+      [locationProvider getLocationWithBlock:^(CLLocation *geoLocation) {
+          NSString *geoLocationMessage =
+              [NSString stringWithFormat:@"Your position is (%lf, %lf)",
+                                         geoLocation.coordinate.latitude,
+                                         geoLocation.coordinate.longitude];
 
-        CLGeocoder *coder = [[CLGeocoder alloc] init];
-        [coder reverseGeocodeLocation:geoLocation
-                    completionHandler:^(NSArray *placemarks, NSError *error) {
-                        CLPlacemark *mark = [placemarks lastObject];
-                        NSLog(@"%@ - %@ - %@", mark.name, mark.subLocality,
-                              mark.country);
+          [[[UIAlertView alloc] initWithTitle:@"Location updated"
+                                      message:geoLocationMessage
+                                     delegate:nil
+                            cancelButtonTitle:@"Ok"
+                            otherButtonTitles:nil, nil] show];
 
-                        [bestScore setLocationName:mark.name];
+          CLGeocoder *coder = [[CLGeocoder alloc] init];
+          [coder
+              reverseGeocodeLocation:geoLocation
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       CLPlacemark *mark = [placemarks lastObject];
+                       NSLog(@"%@ - %@ - %@", mark.name, mark.subLocality,
+                             mark.country);
 
-                        if (mark.subLocality) {
-                          [bestScore setSubLocality:mark.subLocality];
-                        } else {
-                          [bestScore setSubLocality:@""];
-                        }
+                       [bestScore setLocationName:mark.name];
 
-                        if (mark.country) {
-                          [bestScore setCountryName:mark.country];
-                        } else {
-                          [bestScore setCountryName:@""];
-                        }
+                       if (mark.subLocality) {
+                         [bestScore setSubLocality:mark.subLocality];
+                       } else {
+                         [bestScore setSubLocality:@""];
+                       }
 
-                        [bestScore saveInBackgroundWithBlock:^(BOOL succeeded,
-                                                               NSError *error) {
-                            if (succeeded) {
-                              NSLog(@"Result saved");
-                            } else {
-                              NSLog(@"%@", error);
-                            }
-                        }];
+                       if (mark.country) {
+                         [bestScore setCountryName:mark.country];
+                       } else {
+                         [bestScore setCountryName:@""];
+                       }
 
-                    }];
-    }];
+                       [bestScore saveInBackgroundWithBlock:^(BOOL succeeded,
+                                                              NSError *error) {
+                           if (succeeded) {
+                             NSLog(@"Result saved");
+                           } else {
+                             NSLog(@"%@", error);
+                           }
+                       }];
+
+                   }];
+      }];
+    }
   }
 }
 @end

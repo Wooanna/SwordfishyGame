@@ -23,6 +23,7 @@
   SKAction *_delayAndMoveFishWord;
   NSArray *buttons;
   BubbleMaker *_bubbleMaker;
+    GameScene *_gameScene;
   NetworkConnectionChecker *_connectionChecker;
 }
 void showButtons(NSArray *buttons) {
@@ -131,6 +132,10 @@ void showButtons(NSArray *buttons) {
   showButtons(buttons);
 }
 
+- (void)setScene {
+    [_gameScene setReturnScene:self];
+}
+
 - (void)update:(NSTimeInterval)currentTime {
   [_bubbleMaker generateBubbles];
 }
@@ -141,8 +146,13 @@ void showButtons(NSArray *buttons) {
   CGPoint location = [touch locationInNode:self.scene];
   SKTransition *transition = [SKTransition fadeWithDuration:1.];
   if (CGRectContainsPoint(_playBtn.frame, location)) {
-    GameScene *gameScene = [GameScene sceneWithSize:self.size];
-    [self.view presentScene:gameScene transition:transition];
+      
+     
+    _gameScene = [GameScene sceneWithSize:self.size];
+      [self performSelector:@selector(setScene) withObject:nil afterDelay:0.01];
+
+    [self.view presentScene:_gameScene transition:transition];
+      
   } else if (CGRectContainsPoint(_scoresBtn.frame, location)) {
     if ([_connectionChecker connection]) {
 

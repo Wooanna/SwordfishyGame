@@ -47,7 +47,7 @@
 
   _question.position = CGPointMake(self.size.width/2 -self.size.width/2, self.size.height/2 - self.size.height/2 + 120);
   _question.text = currentQuestion.question;
-  _question.fontSize = 40;
+  _question.fontSize = 20;
     _question.fontColor = [UIColor brownColor];
 
   _answerOne.position =

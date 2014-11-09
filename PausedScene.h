@@ -12,7 +12,9 @@
     : SKScene <UIGestureRecognizerDelegate, SKPhysicsContactDelegate> {
 
   UILongPressGestureRecognizer *longPressGesture;
+        UIPinchGestureRecognizer *pinchGesture;
 }
+
 @property(strong, nonatomic, readonly) SKScene *returnScene;
 
 - (void)setReturnScene:(SKScene *)returnScene;
