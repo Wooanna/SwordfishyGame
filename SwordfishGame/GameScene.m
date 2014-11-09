@@ -186,9 +186,6 @@ static const uint32_t frameCategory = 0x1 << 4;
   }
 }
 
-// method that generate and setup the current object
-// poping out from the left side of the scene
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [_sharky.physicsBody applyImpulse:CGVectorMake(0, 100)];
   UITouch *touch = [touches anyObject];

@@ -11,6 +11,12 @@
 -(instancetype)initWithSize:(CGSize)size{
     if(self = [super initWithSize:size]){
     self.backgroundColor = [UIColor blackColor];
+    
+    }
+    return self;
+}
+-(void)didMoveToView:(SKView *)view{
+    
     gameOver = [SKSpriteNode spriteNodeWithImageNamed:@"gameover.png"];
     gameOver.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - 150);
     gameOver.zPosition = 600;
@@ -45,12 +51,6 @@
     [self addChild:labelDone];
     [self addChild:gameOver];
     [self.view addSubview:textField];
-    }
-    return self;
-}
--(void)didMoveToView:(SKView *)view{
-    
-    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

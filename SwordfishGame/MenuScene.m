@@ -161,16 +161,7 @@ void showButtons(NSArray *buttons) {
       [alert show];
     }
   } else if (CGRectContainsPoint(_customizePlayerBtn.frame, location)) {
-      } else if (CGRectContainsPoint(_rulesBtn.frame, location)) {
-    CGSize sceneSize = CGSizeMake(self.size.width / 2, self.size.height / 2);
-    
-    QuestionScene *qScene =
-        [QuestionScene spriteNodeWithColor:[UIColor blueColor] size:sceneSize];
-      qScene.zPosition = 50;
-      qScene.position = CGPointMake(self.size.width/2, self.size.height/2);
-      [qScene initQuestionNode];
-    [self addChild:qScene];
-      
+  } else if (CGRectContainsPoint(_rulesBtn.frame, location)) {
   }
 }
 
