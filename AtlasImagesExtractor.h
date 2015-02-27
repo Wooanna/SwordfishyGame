@@ -10,5 +10,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface AtlasImagesExtractor : NSObject
+
 - (NSMutableArray *)ExtractImagesFromAtlasNamed:(NSString *)atlasName;
+
 @end

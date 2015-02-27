@@ -9,7 +9,13 @@
 #import "NetworkConnectionChecker.h"
 
 @implementation NetworkConnectionChecker
+
+-(instancetype)init{
+    self = [super init];
+    return self;
+}
 -(BOOL)connection{
+    
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     NetworkStatus networkStatus = [reachability currentReachabilityStatus];
     return networkStatus != NotReachable;

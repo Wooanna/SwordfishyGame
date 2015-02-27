@@ -30,8 +30,7 @@ static const uint32_t questionCategory = 0x1 << 3;
 
   NSMutableArray *sharkyTextures = [NSMutableArray array];
   sharkyTextures = [extractor ExtractImagesFromAtlasNamed:@"sharky"];
-  SKAction *move =
-      [SKAction animateWithTextures:sharkyTextures timePerFrame:0.3];
+  SKAction *move = [SKAction animateWithTextures:sharkyTextures timePerFrame:0.3];
   SKAction *keepMovingForever = [SKAction repeatActionForever:move];
 
   _sharky = [SKSpriteNode spriteNodeWithImageNamed:@"sharky1.png"];
@@ -73,7 +72,7 @@ static const uint32_t questionCategory = 0x1 << 3;
     _fadeOut = [SKAction fadeAlphaTo:0.0 duration:2];
     _fadeIn = [SKAction fadeAlphaTo:1 duration:2];
     _fadeInfadeOut = [SKAction sequence:@[ _fadeIn, _fadeOut ]];
-    _pinchOutToPouse = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    _pinchOutToPouse = [SKLabelNode labelNodeWithFontNamed:@"Papyrus"];
     _pinchOutToPouse.text = @"Pinch out to pause the game";
     _pinchOutToPouse.position = CGPointMake(
     self.size.width / 2, self.size.height - scoreLabel.frame.size.height -
@@ -83,7 +82,7 @@ static const uint32_t questionCategory = 0x1 << 3;
     _pinchOutToPouse.alpha = 0.1;
     [_pinchOutToPouse runAction:_fadeInfadeOut];
 
-    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Papyrus"];
     scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
     scoreLabel.position = CGPointMake(
         self.size.width / 2, self.size.height - scoreLabel.frame.size.height);
@@ -209,7 +208,8 @@ static const uint32_t questionCategory = 0x1 << 3;
     [qScene initQuestionNode];
     [self addChild:qScene];
     self.scene.view.paused = YES;
-        }
+      
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -243,8 +243,7 @@ static const uint32_t questionCategory = 0x1 << 3;
 
   } else {
 
-    GameOverScene *gameOverScene =
-        [[GameOverScene alloc] initWithSize:self.size andScore:score];
+    GameOverScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size andScore:score];
     [self.view presentScene:gameOverScene];
   }
 }

@@ -3,7 +3,12 @@
 #import "AtlasImagesExtractor.h"
 
 @implementation FishMaker {
-  AtlasImagesExtractor *extractor;
+  
+    SKSpriteNode* _fish;
+    SKSpriteNode* _questionFish;
+    AtlasImagesExtractor* _extractor;
+    NSMutableArray* _fishesTextures;
+
 }
 
 static const uint32_t fishCategory = 0x1 << 2;
@@ -12,7 +17,8 @@ static const uint32_t questionCategory = 0x1 << 3;
 - (id)initWithParentScene:(SKScene *)scene {
   if (self = [super init]) {
     _parentScene = scene;
-    extractor = [[AtlasImagesExtractor alloc] init];
+    _extractor = [AtlasImagesExtractor new];
+    _fishesTextures = [_extractor ExtractImagesFromAtlasNamed:@"fishes"];
   }
   return self;
 }
@@ -20,38 +26,30 @@ static const uint32_t questionCategory = 0x1 << 3;
 - (void)generateFish {
 
   int bodyRadius = arc4random_uniform(20) + 5;
-  CGFloat fishPosition =
-      arc4random_uniform(_parentScene.frame.size.height - bodyRadius * 2);
-  SKAction *moveBubble = [SKAction moveByX:_parentScene.frame.size.width
-                                         y:0
-                                  duration:arc4random_uniform(5)];
-  NSMutableArray *fishesTextures =
-      [extractor ExtractImagesFromAtlasNamed:@"fishes"];
-  SKSpriteNode *fish;
-  SKSpriteNode *questionFish;
-  int texture = arc4random_uniform((uint32_t)fishesTextures.count);
-  NSLog(@"%d", texture);
-  if (texture == 2) {
-    questionFish = [SKSpriteNode spriteNodeWithTexture:fishesTextures[2]];
-    questionFish.physicsBody =
-        [SKPhysicsBody bodyWithCircleOfRadius:questionFish.size.width / 2];
-
-    questionFish.physicsBody.affectedByGravity = NO;
-    questionFish.position = CGPointMake(0, fishPosition);
-    questionFish.physicsBody.categoryBitMask = questionCategory;
-    [questionFish runAction:moveBubble];
-    [_parentScene addChild:questionFish];
+  CGFloat fishPosition = arc4random_uniform(_parentScene.frame.size.height - bodyRadius * 2);
+  SKAction *moveFish = [SKAction moveByX:_parentScene.frame.size.width y:0 duration:arc4random_uniform(5)];
+  int textureIndex = arc4random_uniform((int)_fishesTextures.count);
+    
+  if (textureIndex == 2) {
+      //we have a bad fish
+    _questionFish = [SKSpriteNode spriteNodeWithTexture:_fishesTextures[2]];
+    _questionFish.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_questionFish.size.width / 2];
+    _questionFish.physicsBody.affectedByGravity = NO;
+    _questionFish.position = CGPointMake(0, fishPosition);
+    _questionFish.physicsBody.categoryBitMask = questionCategory;
+    [_questionFish runAction:moveFish];
+    [_parentScene addChild:_questionFish];
   } else {
-    fish = [SKSpriteNode spriteNodeWithTexture:fishesTextures[texture]];
-    fish.xScale = 0.2;
-    fish.yScale = 0.2;
-    fish.physicsBody =
-        [SKPhysicsBody bodyWithCircleOfRadius:fish.size.width / 2];
-    fish.physicsBody.affectedByGravity = NO;
-    fish.position = CGPointMake(0, fishPosition);
-    fish.physicsBody.categoryBitMask = fishCategory;
-    [fish runAction:moveBubble];
-    [_parentScene addChild:fish];
+      //we have any other kind of fish
+    _fish = [SKSpriteNode spriteNodeWithTexture:_fishesTextures[textureIndex]];
+    _fish.xScale = 0.2;
+    _fish.yScale = 0.2;
+    _fish.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_fish.size.width / 2];
+    _fish.physicsBody.affectedByGravity = NO;
+    _fish.position = CGPointMake(0, fishPosition);
+    _fish.physicsBody.categoryBitMask = fishCategory;
+    [_fish runAction:moveFish];
+    [_parentScene addChild:_fish];
   }
 }
 

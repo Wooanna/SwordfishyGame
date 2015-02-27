@@ -10,12 +10,15 @@
   void (^_block)(CLLocation *);
   id _target;
   SEL _action;
+  CLAuthorizationStatus _authorizationStatus;
 }
 
 - (instancetype)init {
   if (self = [super init]) {
     locationManager = [[CLLocationManager alloc] init];
     [self setupLocationManager];
+    _authorizationStatus = [CLLocationManager authorizationStatus];
+
   }
   return self;
 }
@@ -23,14 +26,18 @@
 - (void)getLocationWithBlock:(void (^)(CLLocation *))block {
   _block = block;
   [locationManager requestAlwaysAuthorization];
-  [locationManager startUpdatingLocation];
+        [locationManager startUpdatingLocation];
+
 }
 
 - (void)getLocationWithTarget:(id)target andAction:(SEL)action {
   _target = target;
   _action = action;
   [locationManager requestAlwaysAuthorization];
-  [locationManager startUpdatingLocation];
+    
+    
+            [locationManager startUpdatingLocation];
+    
 }
 
 - (void)setupLocationManager {

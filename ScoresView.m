@@ -15,50 +15,49 @@
   UITableViewCell *_cell;
     SKLabelNode *_scores;
     SKLabelNode *_menu;
+    NSArray *_sortedArray;
 }
 
-// for downloading players bestScores
-- (instancetype)init {
-  self = [super init];
-  if (self) {
-    self.bestScores = [NSMutableArray array];
-      
-  }
-  return self;
-}
+// for downloading players bestScore
+-(instancetype)initWithSize:(CGSize)size{
+    self = [super initWithSize:size];
+    if (self) {
+        self.bestScores = [[NSMutableArray alloc] init];
+        BestScore *bestScore = [[BestScore alloc] init];
+        
+        // for downloading players bestScores
+        PFQuery *query = [PFQuery queryWithClassName:[bestScore parseClassName]];
+        [query orderByDescending:@"playerScore"];
+        
+        __weak id weakSelf = self;
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if(error){
+                NSLog(@"error");
+            }else if (!error) {
+                
+               _sortedArray = [objects
+                               sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                   NSNumber *first = [(BestScore *)a playerResult];
+                                   NSNumber *second = [(BestScore *)b playerResult];
+                                   return [second compare:first];
+                               }];
+                
+                self.bestScores = [NSMutableArray arrayWithArray:_sortedArray];
+                [[weakSelf tableView] reloadData];
+            }
+        }];
+        
 
+    }
+    return self;
+}
 
 - (void)didMoveToView:(SKView *)view {
   [super didMoveToView:view];
-  BestScore *bestScore = [BestScore object];
-
-  // for downloading players bestScores
-  PFQuery *query = [PFQuery queryWithClassName:[bestScore parseClassName]];
-  [query orderByDescending:@"playerScore"];
-
-  __weak id weakSelf = self;
-  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-      if (!error) {
-        NSArray *sortedArray;
-        sortedArray = [objects
-            sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                NSNumber *first = [(BestScore *)a playerResult];
-                NSNumber *second = [(BestScore *)b playerResult];
-                return [second compare:first];
-            }];
-
-        [weakSelf setBestScores:[NSMutableArray arrayWithArray:sortedArray]];
-        [[weakSelf tableView] reloadData];
-      }
-  }];
-
-  _tableView =
-      [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width/3,
-                                                    self.frame.size.height/2 - 100)];
-  _tableView.delegate = self;
-  _tableView.dataSource = self;
-    _tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"notebook_sheet.jpg"]];
-_tableView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+   _tableView = [[UITableView alloc] initWithFrame:self.frame];
+   _tableView.delegate = self;
+   _tableView.dataSource = self;
+   _tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"notebook_sheet.jpg"]];
     
     _scores = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     _scores.position = CGPointMake(self.size.width/2, self.size.height - 50);
@@ -78,40 +77,32 @@ _tableView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.si
     _returnScene = returnScene;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
   NSString *identifier = @"cell";
 
   _cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!_cell) {
-    _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                   reuseIdentifier:identifier];
-        [_cell setBackgroundColor:[UIColor clearColor]];
-        _cell.textLabel.font = [UIFont fontWithName:@"Chalkduster" size:15];
+        
+    _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+    [_cell setBackgroundColor:[UIColor clearColor]];
+    _cell.textLabel.font = [UIFont fontWithName:@"Chalkduster" size:15];
 
   }
   BestScore *currentScore = self.bestScores[indexPath.row];
 
-  NSString *textLabel =
-      [[NSString alloc] initWithFormat:(@"%@ - %@"), currentScore.playerName,
-                                       currentScore.playerResult];
-  NSString *detailTextLabel = [[NSString alloc]
-      initWithFormat:(@"%@   %@   %@"), currentScore.locationName,
-                     currentScore.subLocality, currentScore.countryName];
+  NSString *textLabel = [[NSString alloc] initWithFormat:(@"%@ - %@"), currentScore.playerName, currentScore.playerResult];
+  NSString *detailTextLabel = [[NSString alloc] initWithFormat:(@"%@   %@   %@"), currentScore.locationName, currentScore.subLocality, currentScore.countryName];
 
   _cell.textLabel.text = textLabel;
-
   _cell.detailTextLabel.text = detailTextLabel;
 
   return _cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView
-    numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-  NSLog(@"%ld", self.bestScores.count);
-  return self.bestScores.count;
+    return 5;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

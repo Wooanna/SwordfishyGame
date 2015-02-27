@@ -3,11 +3,13 @@
 #import "MenuScene.h"
 
 @implementation PausedScene {
+    
   SKSpriteNode *_backLayer;
   SKLabelNode *_gamePaused;
   SKLabelNode *_longPressToResumeLabel;
   MenuScene *_menuScene;
   BubbleMaker *_bubbleMaker;
+    
 }
 - (id)initWithSize:(CGSize)size {
   if (self = [super initWithSize:size]) {
@@ -15,9 +17,9 @@
     _bubbleMaker = [[BubbleMaker alloc] initWithParentScene:self];
     [_bubbleMaker generateBubbles];
     _backLayer = [SKSpriteNode spriteNodeWithImageNamed:@"menu_back.png"];
-    _backLayer.position =
-        CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    _backLayer.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _backLayer.zPosition = 30;
+    
     _gamePaused = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     _gamePaused.text = @"GAME PAUSED";
     _gamePaused.fontSize = 40;
@@ -46,8 +48,7 @@
       initWithTarget:self
               action:@selector(handleLongPress:)];
   pinchGesture =
-      [[UIPinchGestureRecognizer alloc] initWithTarget:self
-                                                action:@selector(handlePinch:)];
+      [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
   [self.view addGestureRecognizer:pinchGesture];
   [self.view addGestureRecognizer:longPressGesture];
     
@@ -82,11 +83,6 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
-  //  UITouch *touch = [touches anyObject];
-  //  CGPoint location = [touch locationInNode:self.scene];
-  //  if (CGRectContainsPoint(self.frame, location)) {
-  //
-  //  }
 }
 
 @end

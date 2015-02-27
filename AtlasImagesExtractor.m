@@ -9,22 +9,20 @@
 #import "AtlasImagesExtractor.h"
 
 @implementation AtlasImagesExtractor
+
 - (NSMutableArray *)ExtractImagesFromAtlasNamed:(NSString *)atlasName {
     
-     SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:atlasName];
-    
-    
-  NSArray *fishyImageNames = [atlas textureNames];
+    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:atlasName];
+    NSArray *fishyImageNames = [atlas textureNames];
+    NSArray *sortedNames = [fishyImageNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSMutableArray *textures = [NSMutableArray array];
 
-  NSArray *sortedNames = [fishyImageNames
-      sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-
-  NSMutableArray *textures = [NSMutableArray array];
-
-  for (NSString *filename in sortedNames) {
+    for (NSString *filename in sortedNames) {
     SKTexture *texture = [atlas textureNamed:filename];
     [textures addObject:texture];
-  }
-  return textures;
+    }
+    
+    return textures;
 }
+
 @end

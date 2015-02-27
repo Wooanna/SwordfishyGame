@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B4680001AA09C580054F6C9 /* OptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B467FFF1AA09C580054F6C9 /* OptionsScene.m */; };
 		8405529F1A0FB7DC003A3AD7 /* bite.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8405529E1A0FB7DC003A3AD7 /* bite.wav */; };
 		840552A11A0FB969003A3AD7 /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 840552A01A0FB969003A3AD7 /* correct.wav */; };
 		840552A31A0FB981003A3AD7 /* incorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 840552A21A0FB981003A3AD7 /* incorrect.wav */; };
@@ -77,6 +78,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B467FFE1AA09C580054F6C9 /* OptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsScene.h; sourceTree = "<group>"; };
+		1B467FFF1AA09C580054F6C9 /* OptionsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsScene.m; sourceTree = "<group>"; };
 		8405529E1A0FB7DC003A3AD7 /* bite.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bite.wav; sourceTree = "<group>"; };
 		840552A01A0FB969003A3AD7 /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
 		840552A21A0FB981003A3AD7 /* incorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = incorrect.wav; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 		8425DF2B1A0B75C900953FD5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1B467FFE1AA09C580054F6C9 /* OptionsScene.h */,
+				1B467FFF1AA09C580054F6C9 /* OptionsScene.m */,
 				8425DF2F1A0B76A700953FD5 /* PausedScene.h */,
 				8425DF301A0B76A700953FD5 /* PausedScene.m */,
 				84B909EA1A053823000DCA57 /* MenuScene.h */,
@@ -495,6 +500,7 @@
 				84E6EBAE1A0CF81E00DB6D6A /* QuestionScene.m in Sources */,
 				8425DF351A0B76CD00953FD5 /* NetworkConnectionChecker.m in Sources */,
 				84B909F11A053823000DCA57 /* GameViewController.m in Sources */,
+				1B4680001AA09C580054F6C9 /* OptionsScene.m in Sources */,
 				84B909E91A053823000DCA57 /* AppDelegate.m in Sources */,
 				84E6EBA81A0BF28200DB6D6A /* GameOverScene.m in Sources */,
 				8425DF2E1A0B767C00953FD5 /* Reachability.m in Sources */,
@@ -641,6 +647,7 @@
 					"$(PROJECT_DIR)/SwordfishGame",
 				);
 				INFOPLIST_FILE = SwordfishGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -656,6 +663,7 @@
 					"$(PROJECT_DIR)/SwordfishGame",
 				);
 				INFOPLIST_FILE = SwordfishGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

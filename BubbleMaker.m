@@ -8,50 +8,43 @@
 
 #import "BubbleMaker.h"
 #import <SpriteKit/SpriteKit.h>
-@interface BubbleMaker()
-@end
-
 
 @implementation BubbleMaker{
-SKSpriteNode *_bubble;
+    
+    SKSpriteNode *_bubble;
+    NSArray* _numbers;
+    NSArray* _scales;
 }
+
 -(id)initWithParentScene:(SKScene *)scene{
     if(self = [super init]){
      _parentScene = scene;
-    
+     
+     _numbers = @[@20, @(-20), @(-30), @30, @40, @(-40), @(-50), @(-60), @(60), @(50)];
+     _scales = @[@0.05, @0.1, @0.15];
+
     }
     
     return self;
-   
-
-    
 }
 
 - (void)generateBubbles {
     
-    CGFloat numbers[] = {20, -20, -30, 30, 40, -40, -50, -60, 60, 50};
-    CGFloat numbersForScaleBubbles[] = {0.05, 0.1, 0.15};
-    int numbersCount = 10;
-    int scalesCount = 3;
-    CGFloat scale = numbersForScaleBubbles[arc4random_uniform(scalesCount)];
+    CGFloat scale = [_scales[arc4random_uniform((int)_scales.count)] floatValue];
     int duration = arc4random_uniform(3);
-    SKAction *moveBubbleUp =
-    [SKAction moveToY:_parentScene.frame.size.height duration:duration];
-    SKAction *moveToSides = [SKAction
+    SKAction *moveBubbleUp = [SKAction moveToY:_parentScene.frame.size.height duration:duration];
+    SKAction *moveToSides =  [SKAction
                              repeatActionForever:
-                             [SKAction moveByX:numbers[arc4random_uniform(numbersCount)]
+                             [SKAction moveByX:[_numbers[arc4random_uniform((int)_numbers.count)] floatValue]
                                              y:0
-                                      duration:0.001 * numbers[arc4random_uniform(numbersCount)]]];
-    SKAction *move = [SKAction group:@[ moveBubbleUp, moveToSides ]];
-    
+                                      duration:0.001 * [_numbers[arc4random_uniform((int)_numbers.count)] floatValue]]];
+    SKAction *moveGroup = [SKAction group:@[ moveBubbleUp, moveToSides ]];
     _bubble = [SKSpriteNode spriteNodeWithImageNamed:@"bubble.png"];
     _bubble.xScale = scale;
     _bubble.yScale = scale;
-    _bubble.position =
-    CGPointMake(arc4random_uniform(_parentScene.frame.size.width), -50);
+    _bubble.position = CGPointMake(arc4random_uniform(_parentScene.frame.size.width), -50);
     _bubble.zPosition = 50;
-    [_bubble runAction:move];
-    
+    [_bubble runAction:moveGroup];    
     [_parentScene addChild:_bubble];
 }
 @end

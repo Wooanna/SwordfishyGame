@@ -4,7 +4,7 @@
 #import "MenuScene.h"
 
 @implementation GameOverScene {
-  UITextField *textField;
+  UITextField * _textField;
   SKLabelNode *labelDone;
   SKSpriteNode *gameOver;
   SKSpriteNode *waterLayer;
@@ -37,7 +37,7 @@
       CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
   waterLayer.alpha = 0.5;
 
-  yourScoreIs = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+  yourScoreIs = [SKLabelNode labelNodeWithFontNamed:@"Papyrus"];
   yourScoreIs.position =
       CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
   yourScoreIs.text = [NSString stringWithFormat:@"YourScoreIs %d", _score];
@@ -46,18 +46,19 @@
 
   // add location
   locationProvider = [[TALocationProvider alloc] init];
-  textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
-  textField.center = self.view.center;
-  textField.borderStyle = UITextBorderStyleRoundedRect;
-  textField.textColor = [UIColor blackColor];
-  textField.font = [UIFont systemFontOfSize:17.0];
-  textField.placeholder = @"Enter your name here";
-  textField.backgroundColor = [UIColor whiteColor];
-  textField.autocorrectionType = UITextAutocorrectionTypeYes;
-  textField.keyboardType = UIKeyboardTypeDefault;
-  textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+  _textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
+  _textField.center = self.view.center;
+  _textField.borderStyle = UITextBorderStyleRoundedRect;
+  _textField.textColor = [UIColor blackColor];
+  _textField.font = [UIFont systemFontOfSize:17.0];
+  _textField.placeholder = @"Enter your name here";
+  _textField.backgroundColor = [UIColor whiteColor];
+  _textField.autocorrectionType = UITextAutocorrectionTypeYes;
+  _textField.keyboardType = UIKeyboardTypeDefault;
+  _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+  _textField.delegate = self;
 
-  labelDone = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+  labelDone = [SKLabelNode labelNodeWithFontNamed:@"Papyrus"];
   labelDone.position =
       CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2 - 100);
   labelDone.text = @"DONE";
@@ -70,7 +71,7 @@
   [self addChild:yourScoreIs];
   [self addChild:labelDone];
   [self addChild:gameOver];
-  [self.view addSubview:textField];
+  [self.view addSubview:_textField];
 }
 
 - (void)locationUpdated:(CLLocation *)geoLocation {
@@ -88,7 +89,7 @@
   CGPoint location = [touch locationInNode:self.scene];
 
   if (CGRectContainsPoint(labelDone.frame, location)) {
-    NSString *name = [textField text];
+    NSString *name = [_textField text];
     NSNumber *score = [NSNumber numberWithInt:_score];
 
     if (name.length >= 12) {
@@ -176,5 +177,11 @@
 
     exit(0);
   }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_textField resignFirstResponder];
+    return YES;
 }
 @end

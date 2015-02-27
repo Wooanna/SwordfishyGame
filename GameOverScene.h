@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface GameOverScene : SKScene
+@interface GameOverScene : SKScene <UITextFieldDelegate>
 
 - initWithSize:(CGSize)size andScore:(int)score;
 @end

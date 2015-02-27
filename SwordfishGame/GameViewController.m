@@ -28,14 +28,12 @@
 
 + (instancetype)unarchiveFromFile:(NSString *)file {
   /* Retrieve scene file path from the application bundle */
-  NSString *nodePath =
-      [[NSBundle mainBundle] pathForResource:file ofType:@"sks"];
+  NSString *nodePath = [[NSBundle mainBundle] pathForResource:file ofType:@"sks"];
   /* Unarchive the file to an SKScene object */
   NSData *data = [NSData dataWithContentsOfFile:nodePath
                                         options:NSDataReadingMappedIfSafe
                                           error:nil];
-  NSKeyedUnarchiver *arch =
-      [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+  NSKeyedUnarchiver *arch = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
   [arch setClass:self forClassName:@"SKScene"];
   SKScene *scene = [arch decodeObjectForKey:NSKeyedArchiveRootObjectKey];
   [arch finishDecoding];
@@ -84,8 +82,8 @@
 
   // Create and configure the scene.
   MenuScene *scene = [MenuScene unarchiveFromFile:@"GameScene"];
-  scene.scaleMode = SKSceneScaleModeAspectFill;
-
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+ 
   // Present the scene.
   [skView presentScene:scene];
 
@@ -116,47 +114,37 @@
   //        NSLog(@"Right answer = %@", q.rightAnswer);
   //      }
 
-  //  // DELETE:
-  //  int k = 1;
-  //  for (QuestionWithAnswer *item in fetchedObjects) {
-  //    if (k > 0) {
-  //      NSLog(@"Deleting Object '%@'", item.question);
-  //      [_cdHelper.context deleteObject:item];
-  //    }
-  //    k++;
-  //  }
-  //  [self.cdHelper saveContext];
 
   // Download new questions from Parse.com
   PFQuery *query = [PFQuery queryWithClassName:[question parseClassName]];
   [query orderByAscending:@"createdAt"];
   query.limit = query.countObjects - fetchedObjects.count;
-  NSLog(@"%ld", query.countObjects);
-  NSLog(@"%ld", fetchedObjects.count);
-  NSLog(@"%ld", query.limit);
 
   __weak id weakSelf = self;
   [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-      if (!error) {
-        NSLog(@"%lu", objects.count);
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+          if (!error) {
+//              NSLog(@"%lu", objects.count);
+              
+              for (QuestionWithAnswer *item in objects) {
+                  NSLog(@"%@", item);
+                  
+                  QuestionWithAnswer *quest = [NSEntityDescription
+                                               insertNewObjectForEntityForName:@"QuestionWithAnswer"
+                                               inManagedObjectContext:_cdHelper.context];
+                  
+                  quest.question = item.question;
+                  [quest setAnswerOne:item.answerOne];
+                  [quest setAnswerTwo:item.answerTwo];
+                  [quest setAnswerThree:item.answerThree];
+                  [quest setRightAnswer:item.rightAnswer];
+                  [_cdHelper.context insertObject:quest];
+                  [[weakSelf cdHelper] saveContext];
+              }
+          }
 
-        for (QuestionWithAnswer *item in objects) {
-          NSLog(@"%@", item);
-
-          QuestionWithAnswer *quest = [NSEntityDescription
-              insertNewObjectForEntityForName:@"QuestionWithAnswer"
-                       inManagedObjectContext:_cdHelper.context];
-
-          quest.question = item.question;
-          [quest setAnswerOne:item.answerOne];
-          [quest setAnswerTwo:item.answerTwo];
-          [quest setAnswerThree:item.answerThree];
-          [quest setRightAnswer:item.rightAnswer];
-          [_cdHelper.context insertObject:quest];
-          [[weakSelf cdHelper] saveContext];
-        }
-      }
-  }];
+      });
+        }];
 }
 
 - (BOOL)shouldAutorotate {
